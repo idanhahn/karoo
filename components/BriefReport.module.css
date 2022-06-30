@@ -1,0 +1,160 @@
+.container {
+  display: grid;
+  grid-template-areas:
+    'image title title'
+    'image content traits'
+    'synopsis synopsis synopsis'
+    'actions actions actions';
+  grid-template-columns: 150px 280px auto;
+  grid-template-rows: 95px 200px 110px auto;
+  position: absolute;
+  top: 52%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 900px;
+  min-height: 520px;
+  background-color: #ffffff;
+  border-radius: 21px;
+  padding: 50px 40px 20px 40px;
+}
+
+.image {
+  grid-area: image;
+  display: flex;
+  flex-direction: row;
+  margin-top: 15px;
+}
+
+.coverImg {
+  box-shadow: 2px 4px 4px 0 #aaaaaa;
+  height: 220px;
+}
+
+.title {
+  grid-area: title;
+  display: flex;
+  flex-direction: column;
+}
+
+.titleUpper {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+.divider {
+  height: 1px;
+  background-color: #aaaaaa;
+  margin-left: 20px;
+}
+
+.titleCenter {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.bookName {
+  font-size: 28px;
+  font-weight: 600;
+}
+
+.author {
+  font-size: 20px;
+  font-weight: 600;
+}
+
+.authorName {
+  color: #5bc0de;
+  text-decoration: underline;
+  cursor: pointer;
+}
+
+.titleRight {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  justify-content: space-between;
+}
+
+.receiveDate {
+}
+
+.score {
+  font-size: 20px;
+  font-weight: 600;
+}
+
+.scoreNum {
+  color: #024e1b;
+  font-size: 24px;
+  text-shadow: 2px 2px 2px #aaaaaa;
+}
+
+.content {
+  grid-area: content;
+  padding-left: 20px;
+}
+
+.genreTitle {
+  font-size: 20px;
+  font-weight: 600;
+}
+
+.genre {
+  font-size: 16px;
+  color: #5bc0de;
+  text-decoration: underline;
+  cursor: pointer;
+}
+
+.representationTitle {
+  font-size: 20px;
+  font-weight: 600;
+}
+
+.representation {
+  font-size: 16px;
+  color: #5bc0de;
+  text-decoration: underline;
+  cursor: pointer;
+}
+
+.recommendationTitle {
+  color: #e27d60;
+  font-size: 20px;
+  font-weight: 600;
+}
+
+.valuationFigure {
+  color: #024e1b;
+  font-weight: 600;
+}
+
+.traits {
+  grid-area: traits;
+}
+
+.synopsis {
+  grid-area: synopsis;
+  display: flex;
+  flex-direction: column;
+}
+
+.synopsisTitle {
+  font-size: 20px;
+  font-weight: 600;
+}
+
+.actions {
+  grid-area: actions;
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-end;
+}
+
+.actionButton {
+  width: 150px;
+  border-radius: 10px;
+  font-weight: 600;
+}

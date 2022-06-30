@@ -1,18 +1,28 @@
+import Box from '@mui/material/Box';
 import Button from '@mui/material/Button';
+import Modal from '@mui/material/Modal';
 import Table from '@mui/material/Table';
 import TableBody from '@mui/material/TableBody';
 import TableCell from '@mui/material/TableCell';
 import TableContainer from '@mui/material/TableContainer';
 import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
-import React from 'react';
+import React, { useState } from 'react';
+import BriefReport from '../components/BriefReport';
 
 const score = 95;
 
 const scoreStyle =
   score > 94 ? 'tableBody__scoreVeryHigh' : 'tableBody__scoreVeryLow';
 
+const bookPreview = 'book preview here';
+
 const manuscripts = () => {
+  const [open, setOpen] = useState(false);
+
+  const handleClickOpen = () => setOpen(true);
+  const handleClose = () => setOpen(false);
+
   return (
     <>
       <TableContainer>
@@ -53,7 +63,11 @@ const manuscripts = () => {
               <TableCell>Good</TableCell>
               <TableCell>Three Acts</TableCell>
               <TableCell>
-                <Button variant="outlined" color="secondary">
+                <Button
+                  variant="outlined"
+                  color="secondary"
+                  onClick={handleClickOpen}
+                >
                   QUICK REPORT
                 </Button>
               </TableCell>
@@ -61,6 +75,9 @@ const manuscripts = () => {
           </TableBody>
         </Table>
       </TableContainer>
+      <Modal open={open} onClose={handleClose}>
+        <BriefReport report={'string'} />
+      </Modal>
       <style>
         {`
         .table{

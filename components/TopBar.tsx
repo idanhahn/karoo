@@ -13,7 +13,7 @@ const TopBar = () => {
             variant="h5"
             noWrap
             component="a"
-            fontFamily="Gentium Book Plus"
+            fontFamily="MONOSPACE"
             href=""
             sx={{ mr: 2 }}
             className="appbar__textLogo"
