@@ -4,6 +4,7 @@ import Image from 'next/image';
 import { Button, Divider, Typography } from '@mui/material';
 
 import styles from './BriefReport.module.css';
+import RadarChart from './RadarChart';
 
 export interface BriefReportProps {
   report: string;
@@ -63,7 +64,12 @@ const BriefReport = (props: BriefReportProps) => {
           <span className={styles.valuationFigure}>$60,000</span>
         </Typography>
       </Box>
-      <Box className={styles.traits}></Box>
+      <Box className={styles.traits}>
+        {/* <Typography className={styles.traitsTitle}>Traits Analysis</Typography> */}
+        <Box className={styles.traitsChart}>
+          <RadarChart traits={[4, 10, 9, 6, 7]}></RadarChart>
+        </Box>
+      </Box>
       <Box className={styles.synopsis}>
         <Typography className={styles.synopsisTitle}>
           AI Generated Synopsis

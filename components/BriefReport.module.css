@@ -6,7 +6,7 @@
     'synopsis synopsis synopsis'
     'actions actions actions';
   grid-template-columns: 150px 280px auto;
-  grid-template-rows: 95px 200px 110px auto;
+  grid-template-rows: 95px 220px 110px auto;
   position: absolute;
   top: 52%;
   left: 50%;
@@ -133,6 +133,26 @@
 
 .traits {
   grid-area: traits;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  position: relative;
+}
+
+.traitsTitle {
+  font-size: 20px;
+  font-weight: 600;
+  color: #e27d60;
+}
+
+.traitsChart {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  position: absolute;
+  top: -80px;
+  left: 40px;
+  width: 380px;
 }
 
 .synopsis {
