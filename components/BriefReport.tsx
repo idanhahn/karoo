@@ -67,7 +67,7 @@ const BriefReport = (props: BriefReportProps) => {
       <Box className={styles.traits}>
         {/* <Typography className={styles.traitsTitle}>Traits Analysis</Typography> */}
         <Box className={styles.traitsChart}>
-          <RadarChart traits={[4, 10, 9, 6, 7]}></RadarChart>
+          <RadarChart traits={[10, 9, 9, 6, 7]}></RadarChart>
         </Box>
       </Box>
       <Box className={styles.synopsis}>

@@ -1,0 +1,75 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model Book {
+  id          Int @id @default(autoincrement())
+  title       String
+  published   Boolean
+  genre       String
+  cover       String
+  backCover   String?
+  blurb       String?
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @default(now())
+  author      Author @relation(fields: [authorId], references: [id])
+  authorId    Int
+  analytics   Analytics?
+}
+
+model Author {
+  id          Int @id @default(autoincrement())
+  name        String
+  trending    String
+  books       Book[]
+  agency      Agency @relation(fields: [agencyId], references: [id])
+  agencyId    Int
+}
+
+model Agency {
+  id          Int @id @default(autoincrement())
+  name        String
+  address     String?
+  city        String?
+  state       String?
+  zip         String?
+  phone       String?
+  email       String?
+  website     String?
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @default(now())
+  authors     Author[]
+}
+
+model Analytics {
+  id                Int @id @default(autoincrement())
+  views             Int?
+  likes             Int?
+  shares            Int?
+  createdAt         DateTime @default(now())
+  updatedAt         DateTime @default(now())
+  totalScore        Int
+  valuation         Int
+  recommendation    String
+  readability       String
+  readabilityScore  Int
+  Pace              String?
+  paceScore         Int
+  grammer           String?
+  grammerScore      Int?
+  complexity        String?
+  complexityScore   Int
+  structure         String
+  structureScore    Int?
+  synopsis          String
+  book              Book @relation(fields: [bookId], references: [id])
+  bookId            Int  @unique
+}
