@@ -10,6 +10,8 @@ import TableRow from '@mui/material/TableRow';
 import React, { useState } from 'react';
 import BriefReport from '../components/BriefReport';
 
+import styles from './manuscripts.module.css';
+
 const score = 95;
 
 const scoreStyle =
@@ -26,35 +28,37 @@ const manuscripts = () => {
   return (
     <>
       <TableContainer>
-        <Table className="table">
+        <Table className={styles.table}>
           <TableHead>
-            <TableRow className="tableHeader">
-              <TableCell className="tableHeader__cell table__title">
+            <TableRow className={styles.header}>
+              <TableCell
+                className={`${styles.headerTitle} ${styles.headerCell}`}
+              >
                 Title
               </TableCell>
-              <TableCell className="tableHeader__cell">Author Name</TableCell>
-              <TableCell align="center" className="tableHeader__cell">
+              <TableCell className={styles.headerCell}>Author Name</TableCell>
+              <TableCell align="center" className={styles.headerCell}>
                 AI Score
               </TableCell>
-              <TableCell className="tableHeader__cell">Genre</TableCell>
-              <TableCell className="tableHeader__cell">Valuation</TableCell>
-              <TableCell className="tableHeader__cell">Readability</TableCell>
-              <TableCell className="tableHeader__cell">Structure</TableCell>
+              <TableCell className={styles.headerCell}>Genre</TableCell>
+              <TableCell className={styles.headerCell}>Valuation</TableCell>
+              <TableCell className={styles.headerCell}>Readability</TableCell>
+              <TableCell className={styles.headerCell}>Structure</TableCell>
               <TableCell
-                className="tableHeader"
+                className={styles.headerCell}
                 sx={{ minWidth: '80px' }}
               ></TableCell>
             </TableRow>
           </TableHead>
           <TableBody>
             <TableRow>
-              <TableCell className="tableBody__title">
+              <TableCell className={styles.bodyTitle}>
                 The Seer of the Isle
               </TableCell>
-              <TableCell className="tableBody__author">Enid Blyton</TableCell>
+              <TableCell className={styles.bodyAuthor}>Enid Blyton</TableCell>
               <TableCell
                 align="center"
-                className={`tableBody__score ${scoreStyle}`}
+                className={`${styles.bodyScore} ${scoreStyle}`}
               >
                 {score}
               </TableCell>
@@ -78,46 +82,6 @@ const manuscripts = () => {
       <Modal open={open} onClose={handleClose}>
         <BriefReport report={'string'} />
       </Modal>
-      <style>
-        {`
-        .table{
-          width: 100%;
-        }
-
-        .tableHeader{
-          border-bottom: 3px solid #E27D60;
-        }
-
-        .tableHeader__cell{
-          color: #E27D60;
-        }
-
-        .table__title{
-          width: 200px;
-        }
-
-        .tableBody__title{
-          font-weight: 600;
-        }
-        
-        .tableBody__author{
-          color: #5BC0DE;
-          text-decoration: underline;
-          cursor: pointer;
-        }
-
-        .tableBody__score{
-          font-weight: 600;
-        }
-
-        .tableBody__scoreVeryHigh{
-          color: #024E1B;
-        }
-        .tableBody__scoreVeryLow{
-          color: #FFFFFF;
-        }
-      `}
-      </style>
     </>
   );
 };
