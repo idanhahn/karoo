@@ -13,11 +13,13 @@ datasource db {
 model Book {
   id          Int @id @default(autoincrement())
   title       String
-  published   Boolean
+  published   Boolean?
   genre       String
   cover       String
   backCover   String?
   blurb       String?
+  uploaded    Boolean?
+  deletedAt   DateTime?
   createdAt   DateTime @default(now())
   updatedAt   DateTime @default(now())
   author      Author @relation(fields: [authorId], references: [id])
@@ -28,10 +30,14 @@ model Book {
 model Author {
   id          Int @id @default(autoincrement())
   name        String
-  trending    String
+  email       String?
+  phone       String?
+  trending    Int
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @default(now())
   books       Book[]
-  agency      Agency @relation(fields: [agencyId], references: [id])
-  agencyId    Int
+  agency      Agency? @relation(fields: [agencyId], references: [id])
+  agencyId    Int?
 }
 
 model Agency {
@@ -54,10 +60,8 @@ model Analytics {
   views             Int?
   likes             Int?
   shares            Int?
-  createdAt         DateTime @default(now())
-  updatedAt         DateTime @default(now())
   totalScore        Int
-  valuation         Int
+  valuation         String
   recommendation    String
   readability       String
   readabilityScore  Int
@@ -70,6 +74,8 @@ model Analytics {
   structure         String
   structureScore    Int?
   synopsis          String
+  createdAt         DateTime @default(now())
+  updatedAt         DateTime @default(now())
   book              Book @relation(fields: [bookId], references: [id])
   bookId            Int  @unique
 }
