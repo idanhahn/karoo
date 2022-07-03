@@ -24,6 +24,10 @@
   border-radius: 40px;
 }
 
+#file-upload-box.dragActive {
+  background-color: #aaaaaa!;
+}
+
 .dragNDrop {
   display: flex;
   flex-direction: column;
@@ -48,4 +52,10 @@
 
 .button {
   width: 200px;
+}
+
+.spinner {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }

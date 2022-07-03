@@ -4,6 +4,10 @@ import type { NextApiRequest, NextApiResponse } from 'next';
 
 import prisma from '../../lib/prisma';
 
+const delay = (ms: number) => {
+  return new Promise((resolve) => setTimeout(resolve, ms));
+};
+
 // eslint-disable-next-line import/no-anonymous-default-export
 export default async (req: NextApiRequest, res: NextApiResponse) => {
   if (req.method !== 'POST') {
@@ -23,7 +27,9 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
       });
     });
 
-    res.status(200).json(true);
+    await delay(4000);
+
+    res.status(200).json({ success: true });
   } catch (err) {
     console.log(err);
     res.status(400).json({ message: 'Something went wrong' });
