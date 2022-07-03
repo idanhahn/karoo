@@ -29,7 +29,7 @@ const BriefReport = ({ book }: { book: any }) => {
               objectFit="contain"
             /> */}
         {/* eslint-disable-next-line @next/next/no-img-element */}
-        <img className={styles.coverImg} src="/res/the-martian.jpg" alt="" />
+        <img className={styles.coverImg} src={book.cover} alt="" />
       </Box>
       <Box className={styles.title}>
         <Box className={styles.titleUpper}>

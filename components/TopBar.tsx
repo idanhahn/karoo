@@ -3,10 +3,12 @@ import AppBar from '@mui/material/AppBar';
 import Container from '@mui/material/Container';
 import Toolbar from '@mui/material/Toolbar';
 import Typography from '@mui/material/Typography';
+import { Box } from '@mui/material';
+import AccountCircleIcon from '@mui/icons-material/AccountCircle';
 
 const TopBar = () => {
   return (
-    <AppBar position="static" className="appbar__appbar">
+    <AppBar position="sticky" className="appbar__appbar">
       <Container maxWidth="xl">
         <Toolbar disableGutters>
           <Typography
@@ -20,6 +22,14 @@ const TopBar = () => {
           >
             KAROO.AI
           </Typography>
+          <Box>
+            <Typography variant="h6" color="secondary" sx={{ mr: 5 }}>
+              Sunny Day Printing
+            </Typography>
+          </Box>
+          <Box>
+            <AccountCircleIcon sx={{ mr: 15 }} fontSize="large" />
+          </Box>
         </Toolbar>
       </Container>
       <style>{`

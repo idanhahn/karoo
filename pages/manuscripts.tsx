@@ -12,6 +12,7 @@ import BriefReport from '../components/BriefReport';
 
 import styles from './manuscripts.module.css';
 import prisma from '../lib/prisma';
+import { Fade } from '@mui/material';
 
 const score = 95;
 
@@ -33,71 +34,73 @@ const manuscripts = ({ books }: { books: any }) => {
   return (
     <>
       <TableContainer>
-        <Table className={styles.table}>
-          <TableHead>
-            <TableRow className={styles.header}>
-              <TableCell
-                className={`${styles.headerTitle} ${styles.headerCell}`}
-              >
-                Title
-              </TableCell>
-              <TableCell className={styles.headerCell}>Author Name</TableCell>
-              <TableCell align="center" className={styles.headerCell}>
-                AI Score
-              </TableCell>
-              <TableCell className={styles.headerCell}>Genre</TableCell>
-              <TableCell className={styles.headerCell}>Valuation</TableCell>
-              <TableCell className={styles.headerCell}>Readability</TableCell>
-              <TableCell className={styles.headerCell}>Structure</TableCell>
-              <TableCell
-                className={styles.headerCell}
-                sx={{ minWidth: '80px' }}
-              ></TableCell>
-            </TableRow>
-          </TableHead>
-          <TableBody>
-            {books &&
-              books
-                .filter((book: any) => book.uploaded)
-                .sort(
-                  (a: any, b: any) =>
-                    b.analytics.totalScore - a.analytics.totalScore
-                )
-                .map((book: any) => {
-                  return (
-                    <TableRow key={book.id}>
-                      <TableCell className={styles.bodyTitle}>
-                        {book.title}
-                      </TableCell>
-                      <TableCell className={styles.bodyAuthor}>
-                        {book.author.name}
-                      </TableCell>
-                      <TableCell
-                        align="center"
-                        className={`${styles.bodyScore} ${scoreStyle}`}
-                      >
-                        {book.analytics.totalScore}
-                      </TableCell>
-                      <TableCell>{book.genre}</TableCell>
-                      <TableCell>{book.analytics.valuation}</TableCell>
-                      <TableCell>{book.analytics.readability}</TableCell>
-                      <TableCell>{book.analytics.structure}</TableCell>
-                      <TableCell>
-                        <Button
-                          variant="outlined"
-                          color="secondary"
-                          onClick={() => {
-                            handleClickOpen(book);
-                          }}
+        <Fade timeout={1000} in={true}>
+          <Table className={styles.table}>
+            <TableHead>
+              <TableRow className={styles.header}>
+                <TableCell
+                  className={`${styles.headerTitle} ${styles.headerCell}`}
+                >
+                  Title
+                </TableCell>
+                <TableCell className={styles.headerCell}>Author Name</TableCell>
+                <TableCell align="center" className={styles.headerCell}>
+                  AI Score
+                </TableCell>
+                <TableCell className={styles.headerCell}>Genre</TableCell>
+                <TableCell className={styles.headerCell}>Valuation</TableCell>
+                <TableCell className={styles.headerCell}>Readability</TableCell>
+                <TableCell className={styles.headerCell}>Structure</TableCell>
+                <TableCell
+                  className={styles.headerCell}
+                  sx={{ minWidth: '80px' }}
+                ></TableCell>
+              </TableRow>
+            </TableHead>
+            <TableBody>
+              {books &&
+                books
+                  .filter((book: any) => book.uploaded)
+                  .sort(
+                    (a: any, b: any) =>
+                      b.analytics.totalScore - a.analytics.totalScore
+                  )
+                  .map((book: any) => {
+                    return (
+                      <TableRow key={book.id}>
+                        <TableCell className={styles.bodyTitle}>
+                          {book.title}
+                        </TableCell>
+                        <TableCell className={styles.bodyAuthor}>
+                          {book.author.name}
+                        </TableCell>
+                        <TableCell
+                          align="center"
+                          className={`${styles.bodyScore} ${scoreStyle}`}
                         >
-                          QUICK REPORT
-                        </Button>
-                      </TableCell>
-                    </TableRow>
-                  );
-                })}
-          </TableBody>
-        </Table>
+                          {book.analytics.totalScore}
+                        </TableCell>
+                        <TableCell>{book.genre}</TableCell>
+                        <TableCell>{book.analytics.valuation}</TableCell>
+                        <TableCell>{book.analytics.readability}</TableCell>
+                        <TableCell>{book.analytics.structure}</TableCell>
+                        <TableCell>
+                          <Button
+                            variant="outlined"
+                            color="secondary"
+                            onClick={() => {
+                              handleClickOpen(book);
+                            }}
+                          >
+                            QUICK REPORT
+                          </Button>
+                        </TableCell>
+                      </TableRow>
+                    );
+                  })}
+            </TableBody>
+          </Table>
+        </Fade>
         <Modal open={open} onClose={handleClose}>
           <BriefReport book={bookPreview} />
         </Modal>
