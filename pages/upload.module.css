@@ -1,0 +1,51 @@
+.container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.title {
+  font-size: 36px;
+}
+
+.subTitle {
+  font-size: 24px;
+}
+
+.dragNDropBox {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  background-color: #ffffff;
+  width: 400px;
+  height: 300px;
+  border: 1px dashed #aaaaaa;
+  border-radius: 40px;
+}
+
+.dragNDrop {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 100%;
+}
+
+.dragNDropImageContainer {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  width: 150px;
+  height: 150px;
+}
+
+.dragNDropImage {
+  width: 150px;
+  height: 150px;
+}
+
+.button {
+  width: 200px;
+}
