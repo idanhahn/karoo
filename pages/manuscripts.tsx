@@ -9,6 +9,8 @@ import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
 import React, { useState } from 'react';
 import BriefReport from '../components/BriefReport';
+import TrendingUpIcon from '@mui/icons-material/TrendingUp';
+import TrendingDownIcon from '@mui/icons-material/TrendingDown';
 
 import styles from './manuscripts.module.css';
 import prisma from '../lib/prisma';
@@ -72,7 +74,15 @@ const manuscripts = ({ books }: { books: any }) => {
                           {book.title}
                         </TableCell>
                         <TableCell className={styles.bodyAuthor}>
-                          {book.author.name}
+                          <span>{book.author.name}</span>
+                          {book.author.trending > 0 && (
+                            <TrendingUpIcon sx={{ ml: 1, color: '#22BB33' }} />
+                          )}
+                          {book.author.trending < 0 && (
+                            <TrendingDownIcon
+                              sx={{ ml: 1, color: '#BB2124' }}
+                            />
+                          )}
                         </TableCell>
                         <TableCell
                           align="center"
