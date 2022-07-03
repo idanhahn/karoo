@@ -79,7 +79,9 @@ const manuscripts = ({ books }: { books: any }) => {
                     <Button
                       variant="outlined"
                       color="secondary"
-                      onClick={handleClickOpen}
+                      onClick={() => {
+                        handleClickOpen(book);
+                      }}
                     >
                       QUICK REPORT
                     </Button>
@@ -89,10 +91,10 @@ const manuscripts = ({ books }: { books: any }) => {
             })}
           </TableBody>
         </Table>
+        <Modal open={open} onClose={handleClose}>
+          <BriefReport book={bookPreview} />
+        </Modal>
       </TableContainer>
-      <Modal open={open} onClose={handleClose}>
-        <BriefReport report={'string'} />
-      </Modal>
     </>
   );
 };

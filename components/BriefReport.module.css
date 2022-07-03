@@ -166,6 +166,11 @@
   font-weight: 600;
 }
 
+.synopsisContent {
+  overflow-y: scroll;
+  margin-bottom: 10px;
+}
+
 .actions {
   grid-area: actions;
   display: flex;

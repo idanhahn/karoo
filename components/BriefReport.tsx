@@ -7,10 +7,18 @@ import styles from './BriefReport.module.css';
 import RadarChart from './RadarChart';
 
 export interface BriefReportProps {
-  report: string;
+  book: any;
 }
 
-const BriefReport = (props: BriefReportProps) => {
+const BriefReport = ({ book }: { book: any }) => {
+  const traits = [
+    Number(book.analytics.valuationScore),
+    Number(book.analytics.readabilityScore),
+    Number(book.analytics.complexityScore),
+    Number(book.analytics.paceScore),
+    Number(book.analytics.trendingScore),
+  ];
+
   return (
     <Box className={styles.container}>
       <Box className={styles.image}>
@@ -27,9 +35,9 @@ const BriefReport = (props: BriefReportProps) => {
         <Box className={styles.titleUpper}>
           <Box></Box>
           <Box className={styles.titleCenter}>
-            <Typography className={styles.bookName}>The Martian</Typography>
+            <Typography className={styles.bookName}>{book.title}</Typography>
             <Typography className={styles.author}>
-              by <span className={styles.authorName}>Andy Weir</span>
+              by <span className={styles.authorName}>{book.author.name}</span>
             </Typography>
           </Box>
           <Box className={styles.titleRight}>
@@ -37,7 +45,10 @@ const BriefReport = (props: BriefReportProps) => {
               May 5th, 2022
             </Typography>
             <Typography className={styles.score}>
-              Score: <span className={styles.scoreNum}>95</span>
+              Score:{' '}
+              <span className={styles.scoreNum}>
+                {book.analytics.totalScore}
+              </span>
             </Typography>
           </Box>
         </Box>
@@ -46,28 +57,30 @@ const BriefReport = (props: BriefReportProps) => {
 
       <Box className={styles.content}>
         <Typography className={styles.genreTitle}>Genre</Typography>
-        <Typography className={styles.genre}>Sci-fi</Typography>
+        <Typography className={styles.genre}>{book.genre}</Typography>
         <Typography className={styles.representationTitle}>
           Representaion
         </Typography>
         <Typography className={styles.representation}>
-          The Book Group
+          {book.author.agency.name}
         </Typography>
         <Typography className={styles.recommendationTitle}>
           Recommendation
         </Typography>
         <Typography className={styles.recommendation}>
-          Accept at market standard
+          {book.analytics.recommendation}
         </Typography>
         <Typography className={styles.valuation}>
           Potential valuation:{' '}
-          <span className={styles.valuationFigure}>$60,000</span>
+          <span className={styles.valuationFigure}>
+            {book.analytics.valuation}
+          </span>
         </Typography>
       </Box>
       <Box className={styles.traits}>
         {/* <Typography className={styles.traitsTitle}>Traits Analysis</Typography> */}
         <Box className={styles.traitsChart}>
-          <RadarChart traits={[10, 9, 9, 6, 7]}></RadarChart>
+          <RadarChart traits={traits}></RadarChart>
         </Box>
       </Box>
       <Box className={styles.synopsis}>
@@ -75,10 +88,7 @@ const BriefReport = (props: BriefReportProps) => {
           AI Generated Synopsis
         </Typography>
         <Typography className={styles.synopsisContent}>
-          Mark Watney became one of the first people to walk on Mars six days
-          ago. After a dust storm nearly kills him and forces his crew to
-          evacuate while thinking him dead, Mark finds himself stranded and
-          completely alone with no way to even signal Earth.
+          {book.analytics.synopsis}
         </Typography>
       </Box>
       <Box className={styles.actions}>
