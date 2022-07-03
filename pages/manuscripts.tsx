@@ -59,6 +59,10 @@ const manuscripts = ({ books }: { books: any }) => {
             {books &&
               books
                 .filter((book: any) => book.uploaded)
+                .sort(
+                  (a: any, b: any) =>
+                    b.analytics.totalScore - a.analytics.totalScore
+                )
                 .map((book: any) => {
                   return (
                     <TableRow key={book.id}>
