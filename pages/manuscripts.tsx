@@ -11,6 +11,7 @@ import React, { useState } from 'react';
 import BriefReport from '../components/BriefReport';
 
 import styles from './manuscripts.module.css';
+import prisma from '../lib/prisma';
 
 const score = 95;
 
@@ -19,10 +20,14 @@ const scoreStyle =
 
 const bookPreview = 'book preview here';
 
-const manuscripts = () => {
+const manuscripts = ({ books }: { books: any }) => {
   const [open, setOpen] = useState(false);
+  const [bookPreview, setBookPreview] = useState(null);
 
-  const handleClickOpen = () => setOpen(true);
+  const handleClickOpen = (book: any) => {
+    setBookPreview(book);
+    setOpen(true);
+  };
   const handleClose = () => setOpen(false);
 
   return (
@@ -51,31 +56,37 @@ const manuscripts = () => {
             </TableRow>
           </TableHead>
           <TableBody>
-            <TableRow>
-              <TableCell className={styles.bodyTitle}>
-                The Seer of the Isle
-              </TableCell>
-              <TableCell className={styles.bodyAuthor}>Enid Blyton</TableCell>
-              <TableCell
-                align="center"
-                className={`${styles.bodyScore} ${scoreStyle}`}
-              >
-                {score}
-              </TableCell>
-              <TableCell>Crime</TableCell>
-              <TableCell>$45,000</TableCell>
-              <TableCell>Good</TableCell>
-              <TableCell>Three Acts</TableCell>
-              <TableCell>
-                <Button
-                  variant="outlined"
-                  color="secondary"
-                  onClick={handleClickOpen}
-                >
-                  QUICK REPORT
-                </Button>
-              </TableCell>
-            </TableRow>
+            {books.map((book: any) => {
+              return (
+                <TableRow key={book.id}>
+                  <TableCell className={styles.bodyTitle}>
+                    {book.title}
+                  </TableCell>
+                  <TableCell className={styles.bodyAuthor}>
+                    {book.author.name}
+                  </TableCell>
+                  <TableCell
+                    align="center"
+                    className={`${styles.bodyScore} ${scoreStyle}`}
+                  >
+                    {book.analytics.totalScore}
+                  </TableCell>
+                  <TableCell>{book.genre}</TableCell>
+                  <TableCell>{book.analytics.valuation}</TableCell>
+                  <TableCell>{book.analytics.readability}</TableCell>
+                  <TableCell>{book.analytics.structure}</TableCell>
+                  <TableCell>
+                    <Button
+                      variant="outlined"
+                      color="secondary"
+                      onClick={handleClickOpen}
+                    >
+                      QUICK REPORT
+                    </Button>
+                  </TableCell>
+                </TableRow>
+              );
+            })}
           </TableBody>
         </Table>
       </TableContainer>
@@ -85,5 +96,20 @@ const manuscripts = () => {
     </>
   );
 };
+
+export async function getServerSideProps() {
+  const booksObj = await prisma.book.findMany({
+    include: {
+      author: {
+        include: {
+          agency: true,
+        },
+      },
+      analytics: true,
+    },
+  });
+  const books = JSON.parse(JSON.stringify(booksObj));
+  return { props: { books } };
+}
 
 export default manuscripts;
