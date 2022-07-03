@@ -56,39 +56,42 @@ const manuscripts = ({ books }: { books: any }) => {
             </TableRow>
           </TableHead>
           <TableBody>
-            {books.map((book: any) => {
-              return (
-                <TableRow key={book.id}>
-                  <TableCell className={styles.bodyTitle}>
-                    {book.title}
-                  </TableCell>
-                  <TableCell className={styles.bodyAuthor}>
-                    {book.author.name}
-                  </TableCell>
-                  <TableCell
-                    align="center"
-                    className={`${styles.bodyScore} ${scoreStyle}`}
-                  >
-                    {book.analytics.totalScore}
-                  </TableCell>
-                  <TableCell>{book.genre}</TableCell>
-                  <TableCell>{book.analytics.valuation}</TableCell>
-                  <TableCell>{book.analytics.readability}</TableCell>
-                  <TableCell>{book.analytics.structure}</TableCell>
-                  <TableCell>
-                    <Button
-                      variant="outlined"
-                      color="secondary"
-                      onClick={() => {
-                        handleClickOpen(book);
-                      }}
-                    >
-                      QUICK REPORT
-                    </Button>
-                  </TableCell>
-                </TableRow>
-              );
-            })}
+            {books &&
+              books
+                .filter((book: any) => book.uploaded)
+                .map((book: any) => {
+                  return (
+                    <TableRow key={book.id}>
+                      <TableCell className={styles.bodyTitle}>
+                        {book.title}
+                      </TableCell>
+                      <TableCell className={styles.bodyAuthor}>
+                        {book.author.name}
+                      </TableCell>
+                      <TableCell
+                        align="center"
+                        className={`${styles.bodyScore} ${scoreStyle}`}
+                      >
+                        {book.analytics.totalScore}
+                      </TableCell>
+                      <TableCell>{book.genre}</TableCell>
+                      <TableCell>{book.analytics.valuation}</TableCell>
+                      <TableCell>{book.analytics.readability}</TableCell>
+                      <TableCell>{book.analytics.structure}</TableCell>
+                      <TableCell>
+                        <Button
+                          variant="outlined"
+                          color="secondary"
+                          onClick={() => {
+                            handleClickOpen(book);
+                          }}
+                        >
+                          QUICK REPORT
+                        </Button>
+                      </TableCell>
+                    </TableRow>
+                  );
+                })}
           </TableBody>
         </Table>
         <Modal open={open} onClose={handleClose}>
