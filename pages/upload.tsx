@@ -5,7 +5,7 @@ import { useRouter } from 'next/router';
 import styles from './upload.module.css';
 import { HashLoader } from 'react-spinners';
 
-const upload = () => {
+const Upload = () => {
   const router = useRouter();
 
   const [dragActive, setDragActive] = useState(false);
@@ -125,4 +125,4 @@ const upload = () => {
   );
 };
 
-export default upload;
+export default Upload;

@@ -23,7 +23,7 @@ const scoreStyle =
 
 const bookPreview = 'book preview here';
 
-const manuscripts = ({ books }: { books: any }) => {
+const Manuscripts = ({ books }: { books: any }) => {
   const [open, setOpen] = useState(false);
   const [bookPreview, setBookPreview] = useState(null);
 
@@ -140,4 +140,4 @@ export async function getServerSideProps() {
   return { props: { books } };
 }
 
-export default manuscripts;
+export default Manuscripts;
