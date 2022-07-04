@@ -29,7 +29,6 @@ const options = {
       pointLabels: {
         font: {
           size: 16,
-          weight: 600,
           family: 'Poppins',
         },
       },
