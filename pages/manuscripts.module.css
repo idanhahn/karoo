@@ -22,9 +22,9 @@
   color: #5bc0de;
   text-decoration: underline;
   cursor: pointer;
-  display: flex;
+  /*display: flex;
   flex-direction: row;
-  align-items: center;
+  align-items: center;*/
 }
 
 .bodyScore {

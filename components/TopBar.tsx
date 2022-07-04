@@ -28,7 +28,7 @@ const TopBar = () => {
             </Typography>
           </Box>
           <Box>
-            <AccountCircleIcon sx={{ mr: 15 }} fontSize="large" />
+            <AccountCircleIcon sx={{ mr: 10 }} fontSize="large" />
           </Box>
         </Toolbar>
       </Container>

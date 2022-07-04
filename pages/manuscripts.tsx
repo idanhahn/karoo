@@ -75,14 +75,20 @@ const manuscripts = ({ books }: { books: any }) => {
                         </TableCell>
                         <TableCell className={styles.bodyAuthor}>
                           <span>{book.author.name}</span>
-                          {book.author.trending > 0 && (
-                            <TrendingUpIcon sx={{ ml: 1, color: '#22BB33' }} />
-                          )}
-                          {book.author.trending < 0 && (
-                            <TrendingDownIcon
-                              sx={{ ml: 1, color: '#BB2124' }}
-                            />
-                          )}
+                          <span>
+                            {book.author.trending > 0 && (
+                              <TrendingUpIcon
+                                sx={{ ml: 1, color: '#22BB33' }}
+                              />
+                            )}
+                          </span>
+                          <span>
+                            {book.author.trending < 0 && (
+                              <TrendingDownIcon
+                                sx={{ ml: 1, color: '#BB2124' }}
+                              />
+                            )}
+                          </span>
                         </TableCell>
                         <TableCell
                           align="center"
