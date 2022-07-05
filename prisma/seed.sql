@@ -38,12 +38,19 @@ insert into "Analytics" ("totalScore", "valuation", "valuationScore", "recommend
 insert into "Analytics" ("totalScore", "valuation", "valuationScore", "recommendation", "readability", "readabilityScore", "paceScore", "complexityScore", "structure", "structureScore", "trendingScore", "synopsis", "createdAt", "updatedAt", "bookId") values (25,'$10,000', 2,'Strong Negative','Not Good',2,5,3,'Character',3,2,'Cas Russell discovers her past was deliberately erased and her abilities deliberately created. When a demolitions expert targets Cas and her friends, a hidden conspiracy behind her past starts to reappear. The past, present, and future collide in a race to save one of her dearest friends.',NOW(),NOW(),9);
 insert into "Analytics" ("totalScore", "valuation", "valuationScore", "recommendation", "readability", "readabilityScore", "paceScore", "complexityScore", "structure", "structureScore", "trendingScore", "synopsis", "createdAt", "updatedAt", "bookId") values (35,'$20,000', 1,'Negative','Not Good',3,1,6,'Three-Acts',3,3,'After a lifetime of neglect, Sophie is disowned by her mother. Where is she to go in London? She finds new friends and is reunited with her brother, the Earl of Nethercote. She also falls in love - but at heart she is still Silly Sophie.',NOW(),NOW(),10);
 
+-- set uploaded
+update "Book"
+set "uploaded" = false
 
 -- sanity
 select * from "Agency";
 select * from "Author";
 select * from "Book";
 select * from "Analytics"
+
+
+
+
 
 select * from "Author" au
 join "Agency" ag on "au"."agencyId" = "ag"."id" 
@@ -63,8 +70,7 @@ update "Book"
 set "uploaded" = true
 where "title" = 'The Martian'
 
-update "Book"
-set "uploaded" = false
+
 
 select * from "Book" where "uploaded" = true
 
