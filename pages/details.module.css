@@ -1,0 +1,101 @@
+.container {
+  display: grid;
+  grid-template-areas:
+    'sidebar title bookInfo'
+    'sidebar graph book'
+    'sidebar suggestions book';
+  grid-template-columns: 50px 1fr 1fr;
+  grid-template-rows: 75px 5fr 4fr;
+  height: 100%;
+}
+
+.sidebar {
+  grid-area: sidebar;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding-top: 40px;
+  box-shadow: 2px 4px 2px #888888;
+}
+
+.sidebarItem {
+  margin-bottom: 15px;
+  cursor: pointer;
+}
+
+.title {
+  grid-area: title;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: baseline;
+  padding-top: 20px;
+}
+
+.analysisName {
+  font-size: 36px;
+  font-weight: semibold;
+}
+
+.bookInfo {
+  grid-area: bookInfo;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: baseline;
+  padding-top: 20px;
+}
+
+.bookName {
+  font-size: 36px;
+  font-weight: semibold;
+}
+
+.authorName {
+  font-size: 24px;
+  color: #5bc0de;
+  text-decoration: underline;
+  cursor: pointer;
+}
+
+.graph {
+  grid-area: graph;
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  justify-content: center;
+}
+
+.book {
+  grid-area: book;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.bookContainer {
+  padding: 60px 20px 60px 20px;
+  overflow: hidden;
+}
+
+.bookPage {
+  width: 100%;
+  height: 100%;
+  background-color: #fbf0d9;
+  padding: 20px;
+  overflow-y: scroll;
+}
+.bookPage::-webkit-scrollbar {
+  width: 0px;
+  background: transparent;
+}
+
+.suggestions {
+  grid-area: suggestions;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background-color: darkred;
+}

@@ -14,7 +14,7 @@ import TrendingDownIcon from '@mui/icons-material/TrendingDown';
 
 import styles from './manuscripts.module.css';
 import prisma from '../lib/prisma';
-import { Fade } from '@mui/material';
+import { Container, Fade } from '@mui/material';
 
 const score = 95;
 
@@ -34,7 +34,7 @@ const Manuscripts = ({ books }: { books: any }) => {
   const handleClose = () => setOpen(false);
 
   return (
-    <>
+    <Container sx={{ mt: 5 }}>
       <TableContainer>
         <Fade timeout={1000} in={true}>
           <Table className={styles.table}>
@@ -121,7 +121,7 @@ const Manuscripts = ({ books }: { books: any }) => {
           <BriefReport book={bookPreview} />
         </Modal>
       </TableContainer>
-    </>
+    </Container>
   );
 };
 
