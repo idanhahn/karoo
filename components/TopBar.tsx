@@ -5,8 +5,12 @@ import Toolbar from '@mui/material/Toolbar';
 import Typography from '@mui/material/Typography';
 import { Box } from '@mui/material';
 import AccountCircleIcon from '@mui/icons-material/AccountCircle';
+import { useUser } from '@auth0/nextjs-auth0';
+import Link from 'next/link';
 
 const TopBar = () => {
+  const { user } = useUser();
+
   return (
     <AppBar position="sticky" className="appbar__appbar">
       <Container maxWidth="xl">
@@ -22,14 +26,20 @@ const TopBar = () => {
           >
             KAROO.AI
           </Typography>
-          <Box>
-            <Typography variant="h6" color="secondary" sx={{ mr: 5 }}>
-              Sunny Day Printing
-            </Typography>
-          </Box>
-          <Box>
-            <AccountCircleIcon sx={{ mr: 10 }} fontSize="large" />
-          </Box>
+          {user && (
+            <>
+              <Box>
+                <Typography variant="h6" color="secondary" sx={{ mr: 5 }}>
+                  {user.name}
+                </Typography>
+              </Box>
+              <Box>
+                <Link href="/api/auth/logout">
+                  <AccountCircleIcon sx={{ mr: 10 }} fontSize="large" />
+                </Link>
+              </Box>
+            </>
+          )}
         </Toolbar>
       </Container>
       <style>{`

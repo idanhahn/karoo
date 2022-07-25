@@ -1,13 +1,13 @@
 import React, { useState } from 'react';
 import { Box, Button, Typography } from '@mui/material';
 import { useRouter } from 'next/router';
+import { withPageAuthRequired } from '@auth0/nextjs-auth0';
 
 import styles from './upload.module.css';
-import { HashLoader } from 'react-spinners';
+import Loader from '../components/Loader';
 
 const Upload = () => {
   const router = useRouter();
-
   const [dragActive, setDragActive] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
 
@@ -62,19 +62,14 @@ const Upload = () => {
 
   if (isLoading) {
     return (
-      <Box className={styles.container}>
-        <Box sx={{ mb: 10 }} className={styles.spinner}>
-          <Typography sx={{ mb: 15, fontWeight: 500 }} variant="h4">
-            Preparing...
-          </Typography>
-          <HashLoader color="#85D0CB" size={250} />
-        </Box>
+      <Box sx={{ mt: 30 }} className={styles.container}>
+        <Loader />
       </Box>
     );
   }
 
   return (
-    <Box className={styles.container}>
+    <Box sx={{ mt: 4 }} className={styles.container}>
       <Typography sx={{ mb: 1 }} className={styles.title}>
         Upload Manuscripts
       </Typography>
@@ -125,4 +120,12 @@ const Upload = () => {
   );
 };
 
-export default Upload;
+export default withPageAuthRequired(Upload, {
+  returnTo: '/upload',
+  onRedirecting: () => (
+    <Box sx={{ mt: 30 }} className={styles.container}>
+      <Loader />
+    </Box>
+  ),
+  onError: (error) => <div>Error: {error.message}</div>,
+});

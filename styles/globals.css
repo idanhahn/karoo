@@ -1,3 +1,10 @@
+@font-face {
+  font-family: 'Truetypewriter PolygIOTT';
+  src: url('../fonts/TTWPGOTT.ttf');
+  font-weight: normal;
+  font-style: normal;
+}
+
 html,
 body,
 body > div:first-child,
