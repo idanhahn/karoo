@@ -27,7 +27,7 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
       });
     });
 
-    await delay(4000);
+    await delay(2000);
 
     res.status(200).json({ success: true });
   } catch (err) {

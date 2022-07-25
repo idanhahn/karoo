@@ -7,29 +7,49 @@ import { Box } from '@mui/material';
 import AccountCircleIcon from '@mui/icons-material/AccountCircle';
 import { useUser } from '@auth0/nextjs-auth0';
 import Link from 'next/link';
+import { useRouter } from 'next/router';
+
+import styles from './TopBar.module.css';
+
+const pagess = ['Manuscripts', 'Research', 'Publish'];
 
 const TopBar = () => {
+  const router = useRouter();
   const { user } = useUser();
 
   return (
     <AppBar position="sticky" className="appbar__appbar">
       <Container maxWidth="xl">
         <Toolbar disableGutters>
-          <Typography
-            variant="h5"
-            noWrap
-            component="a"
-            fontFamily="MONOSPACE"
-            href=""
-            sx={{ mr: 2 }}
-            className="appbar__textLogo"
-          >
-            KAROO.AI
-          </Typography>
+          <Box sx={{ ml: 3, mr: 2 }} className={styles.logo}>
+            Karoo.ai
+          </Box>
+
           {user && (
             <>
+              <Box sx={{ ml: 12, mr: 3 }} className={styles.menu}>
+                {pagess.map((page, index) => (
+                  <Link href={`/${page.toLowerCase()}`} key={index}>
+                    <Box sx={{ mr: 5 }} className={styles.menuItem}>
+                      {router.pathname === '/' + page.toLowerCase() ? (
+                        <Typography variant="h5" className={styles.active}>
+                          {page}
+                        </Typography>
+                      ) : (
+                        <Typography variant="h5">{page}</Typography>
+                      )}
+                    </Box>
+                  </Link>
+                ))}
+              </Box>
+              <Box className={styles.spacer}></Box>
               <Box>
-                <Typography variant="h6" color="secondary" sx={{ mr: 5 }}>
+                <Typography
+                  variant="h6"
+                  color="secondary"
+                  sx={{ mr: 1 }}
+                  className={styles.userName}
+                >
                   {user.name}
                 </Typography>
               </Box>
@@ -45,16 +65,6 @@ const TopBar = () => {
       <style>{`
         .appbar__appbar{
           background-color: #ffffff;
-        }
-        .appbar__textLogo{
-          display: flex;
-          flex-grow: 1;
-          color: #E27D60;
-          font-weight: 700;
-          letter-spacing: .3rem;
-          text-decoration: none;
-          text-shadow: 0px 2px 2px #AAAAAA;
-          margin-left: 30px;
         }
       `}</style>
     </AppBar>
