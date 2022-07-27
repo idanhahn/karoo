@@ -1,5 +1,5 @@
 import { Box, IconButton, Slider, Tooltip, Typography } from '@mui/material';
-import React from 'react';
+import React, { useState, useRef } from 'react';
 import TimelineIcon from '@mui/icons-material/Timeline';
 import GraphicEqIcon from '@mui/icons-material/GraphicEq';
 import SpeedIcon from '@mui/icons-material/Speed';
@@ -9,9 +9,31 @@ import SubjectIcon from '@mui/icons-material/Subject';
 
 import styles from './manuscripts.module.css';
 import PlotStructureChart from '../components/PlotStructureChart';
-import BookPage from '../components/BookPage';
+
+import book from '../assets/books/sampleLong';
+// import book from '../assets/books/sample';
 
 const Details = () => {
+  const bookRef = useRef<HTMLElement>(null);
+  const pageRef = useRef<HTMLElement>(null);
+
+  const getPagePosition = (scrollPosition: number) => {
+    if (bookRef.current) {
+      const maxScrollPosition: number = bookRef.current?.clientHeight;
+      return Math.floor((scrollPosition * (maxScrollPosition - 1084)) / 100);
+    }
+  };
+
+  const handleSliderChange = (e: any) => {
+    if (pageRef.current) {
+      pageRef.current.scrollTop = getPagePosition(e.target.value);
+    }
+  };
+
+  const handleScroll = (e) => {
+    // console.log(e.target.scrollTop);
+  };
+
   return (
     <Box className={styles.container}>
       <Box className={styles.sidebar}>
@@ -68,23 +90,25 @@ const Details = () => {
         <Box className={styles.graph}>
           <PlotStructureChart />
         </Box>
-        <Box width={800}>
+        <Box sx={{ ml: 4 }} width={700}>
           <Slider
             sx={{
-              color: 'black',
+              color: '#41b3a3',
             }}
-            defaultValue={50}
+            defaultValue={0}
             aria-label="Default"
             valueLabelDisplay="auto"
+            onChange={handleSliderChange}
           />
         </Box>
       </Box>
       <Box sx={{ mt: 4, mr: 2, mb: 4 }} className={styles.book}>
         <Box className={styles.bookSection}>
           <Box className={styles.bookSearch}></Box>
-
-          <Box className={styles.bookPage}>
-            <BookPage />
+          <Box ref={pageRef} onScroll={handleScroll} className={styles.page}>
+            <pre ref={bookRef} className={styles.book}>
+              {book.content}
+            </pre>
           </Box>
         </Box>
       </Box>
