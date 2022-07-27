@@ -1,11 +1,22 @@
-import { Box, IconButton, Slider, Tooltip, Typography } from '@mui/material';
-import React, { useState, useRef } from 'react';
+import {
+  Box,
+  FormControl,
+  IconButton,
+  InputAdornment,
+  InputLabel,
+  OutlinedInput,
+  Slider,
+  Tooltip,
+  Typography,
+} from '@mui/material';
+import React, { useRef } from 'react';
 import TimelineIcon from '@mui/icons-material/Timeline';
 import GraphicEqIcon from '@mui/icons-material/GraphicEq';
 import SpeedIcon from '@mui/icons-material/Speed';
 import GroupsOutlinedIcon from '@mui/icons-material/GroupsOutlined';
 import PieChartOutlineIcon from '@mui/icons-material/PieChartOutline';
 import SubjectIcon from '@mui/icons-material/Subject';
+import SearchOutlinedIcon from '@mui/icons-material/SearchOutlined';
 
 import styles from './manuscripts.module.css';
 import PlotStructureChart from '../components/PlotStructureChart';
@@ -13,8 +24,31 @@ import PlotStructureChart from '../components/PlotStructureChart';
 import book from '../assets/books/sampleLong';
 // import book from '../assets/books/sample';
 
+const marks = [
+  {
+    value: 0,
+    label: '0%',
+  },
+  {
+    value: 25,
+    label: '25%',
+  },
+  {
+    value: 50,
+    label: '50%',
+  },
+  {
+    value: 75,
+    label: '75%',
+  },
+  {
+    value: 100,
+    label: '100%',
+  },
+];
+
 const Details = () => {
-  const bookRef = useRef<HTMLElement>(null);
+  const bookRef = useRef<HTMLIFrameElement>(null);
   const pageRef = useRef<HTMLElement>(null);
 
   const getPagePosition = (scrollPosition: number) => {
@@ -26,11 +60,15 @@ const Details = () => {
 
   const handleSliderChange = (e: any) => {
     if (pageRef.current) {
-      pageRef.current.scrollTop = getPagePosition(e.target.value);
+      if (pageRef.current.scrollTop) {
+        pageRef.current.scrollTop = getPagePosition(e.target.value);
+      }
     }
   };
 
-  const handleScroll = (e) => {
+  const handleSearchChange = (e: any) => {};
+
+  const handleScroll = () => {
     // console.log(e.target.scrollTop);
   };
 
@@ -99,12 +137,29 @@ const Details = () => {
             aria-label="Default"
             valueLabelDisplay="auto"
             onChange={handleSliderChange}
+            marks={marks}
           />
         </Box>
       </Box>
       <Box sx={{ mt: 4, mr: 2, mb: 4 }} className={styles.book}>
         <Box className={styles.bookSection}>
-          <Box className={styles.bookSearch}></Box>
+          <Box className={styles.bookSearch}>
+            <FormControl sx={{ m: 1 }} className={styles.search}>
+              <InputLabel htmlFor="search">Search</InputLabel>
+              <OutlinedInput
+                id="search"
+                onChange={handleSearchChange}
+                startAdornment={
+                  <InputAdornment position="start">
+                    <IconButton>
+                      <SearchOutlinedIcon />
+                    </IconButton>
+                  </InputAdornment>
+                }
+                label="Search"
+              />
+            </FormControl>
+          </Box>
           <Box ref={pageRef} onScroll={handleScroll} className={styles.page}>
             <pre ref={bookRef} className={styles.book}>
               {book.content}
@@ -112,7 +167,7 @@ const Details = () => {
           </Box>
         </Box>
       </Box>
-      <Box className={styles.suggestions}>Some info</Box>
+      <Box className={styles.suggestions}></Box>
     </Box>
   );
 };
