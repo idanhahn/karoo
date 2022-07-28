@@ -20,9 +20,33 @@ import SearchOutlinedIcon from '@mui/icons-material/SearchOutlined';
 
 import styles from './manuscripts.module.css';
 import PlotStructureChart from '../components/PlotStructureChart';
+import prisma from '../lib/prisma';
 
-import book from '../assets/books/sampleLong';
+import bookContent from '../assets/books/sampleLong';
+import bookContent1 from '../assets/books/book1';
+import bookContent2 from '../assets/books/book2';
+import bookContent3 from '../assets/books/book3';
+import bookContent4 from '../assets/books/book4';
+import bookContent5 from '../assets/books/book5';
+import bookContent6 from '../assets/books/book6';
+import bookContent7 from '../assets/books/book7';
+import bookContent8 from '../assets/books/book8';
+import bookContent9 from '../assets/books/book9';
+import bookContent10 from '../assets/books/book10';
 // import book from '../assets/books/sample';
+
+const books: any = {
+  1: bookContent1.content,
+  2: bookContent2.content,
+  3: bookContent3.content,
+  4: bookContent4.content,
+  5: bookContent5.content,
+  6: bookContent6.content,
+  7: bookContent7.content,
+  8: bookContent8.content,
+  9: bookContent9.content,
+  10: bookContent10.content,
+};
 
 const marks = [
   {
@@ -47,7 +71,7 @@ const marks = [
   },
 ];
 
-const Details = () => {
+const Details = ({ book }: { book: any }) => {
   const bookRef = useRef<HTMLIFrameElement>(null);
   const pageRef = useRef<HTMLElement>(null);
 
@@ -119,14 +143,17 @@ const Details = () => {
         </Box>
       </Box>
       <Box className={styles.title}>
-        <Typography className={styles.bookName}>The Martian</Typography>
+        <Typography className={styles.bookName}>
+          {book.title} by{' '}
+          <span className={styles.authorName}>{book.author.name}</span>
+        </Typography>
       </Box>
       <Box sx={{ mt: 4 }} className={styles.chartSection}>
         <Typography className={styles.analysisName}>
           Plot Structure Analysis
         </Typography>
         <Box className={styles.graph}>
-          <PlotStructureChart />
+          <PlotStructureChart plotData={book.analytics.plotStructure} />
         </Box>
         <Box sx={{ ml: 4 }} width={700}>
           <Slider
@@ -162,7 +189,7 @@ const Details = () => {
           </Box>
           <Box ref={pageRef} onScroll={handleScroll} className={styles.page}>
             <pre ref={bookRef} className={styles.book}>
-              {book.content}
+              {books[book.id]}
             </pre>
           </Box>
         </Box>
@@ -171,5 +198,21 @@ const Details = () => {
     </Box>
   );
 };
+
+export async function getServerSideProps(params: any) {
+  const bookObj = await prisma.book.findFirst({
+    where: {
+      id: +params.query.id,
+    },
+    include: {
+      author: true,
+      analytics: true,
+    },
+  });
+  const book = JSON.parse(JSON.stringify(bookObj));
+  return {
+    props: { book },
+  };
+}
 
 export default Details;

@@ -76,6 +76,7 @@ model Analytics {
   structureScore    Int?
   trendingScore     Int
   synopsis          String
+  plotStructure     Int[]
   createdAt         DateTime @default(now())
   updatedAt         DateTime @default(now())
   book              Book @relation(fields: [bookId], references: [id])
