@@ -13,7 +13,7 @@ const Home: NextPage = () => {
 
   if (isLoading || user) {
     if (user) {
-      router.push('/upload');
+      router.push('/manuscripts');
     }
     return (
       <Box sx={{ mt: 30 }}>

@@ -1,9 +1,9 @@
-import React from 'react';
+import React, { useState } from 'react';
 import AppBar from '@mui/material/AppBar';
 import Container from '@mui/material/Container';
 import Toolbar from '@mui/material/Toolbar';
 import Typography from '@mui/material/Typography';
-import { Box } from '@mui/material';
+import { Box, Menu, MenuItem } from '@mui/material';
 import AccountCircleIcon from '@mui/icons-material/AccountCircle';
 import { useUser } from '@auth0/nextjs-auth0';
 import Link from 'next/link';
@@ -16,6 +16,16 @@ const pagess = ['Manuscripts', 'Research', 'Publish'];
 const TopBar = () => {
   const router = useRouter();
   const { user } = useUser();
+
+  const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
+
+  const handleMenu = (event: React.MouseEvent<HTMLElement>) => {
+    setAnchorEl(event.currentTarget);
+  };
+
+  const handleClose = () => {
+    setAnchorEl(null);
+  };
 
   return (
     <AppBar position="sticky" className="appbar__appbar">
@@ -53,15 +63,34 @@ const TopBar = () => {
                   {user.name}
                 </Typography>
               </Box>
-              <Box>
-                <Link href="/api/auth/logout">
-                  <AccountCircleIcon sx={{ mr: 10 }} fontSize="large" />
-                </Link>
+              <Box onClick={handleMenu}>
+                <AccountCircleIcon
+                  sx={{ mr: 10, cursor: 'pointer' }}
+                  fontSize="large"
+                />
               </Box>
             </>
           )}
         </Toolbar>
       </Container>
+      <Menu
+        anchorEl={anchorEl}
+        anchorOrigin={{ vertical: 'bottom', horizontal: 'right' }}
+        keepMounted
+        open={Boolean(anchorEl)}
+        onClose={handleClose}
+      >
+        <MenuItem>
+          <Link href="/profile">
+            <Typography>Profile</Typography>
+          </Link>
+        </MenuItem>
+        <MenuItem>
+          <Link href="/api/auth/logout">
+            <Typography>Logout</Typography>
+          </Link>
+        </MenuItem>
+      </Menu>
       <style>{`
         .appbar__appbar{
           background-color: #ffffff;

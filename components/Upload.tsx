@@ -2,12 +2,14 @@ import React, { useState } from 'react';
 import { Box, Button, Typography } from '@mui/material';
 import { useRouter } from 'next/router';
 import { withPageAuthRequired } from '@auth0/nextjs-auth0';
+import { useUser } from '@auth0/nextjs-auth0';
 
 import styles from './upload.module.css';
-import Loader from '../components/Loader';
+import Loader from './Loader';
 
 const Upload = () => {
   const router = useRouter();
+  const { user } = useUser();
   const [dragActive, setDragActive] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
 
@@ -17,10 +19,14 @@ const Upload = () => {
     const files = [...e.target.files].map(
       (file: any) => file.name.split(' - ')[0]
     );
+    const reqBody = {
+      files: files,
+      userEmail: user?.email,
+    };
 
     const response = await fetch('/api/upload', {
       method: 'POST',
-      body: JSON.stringify(files),
+      body: JSON.stringify(reqBody),
     });
     if (await response.json()) {
       //setIsLoading(false);
@@ -40,7 +46,6 @@ const Upload = () => {
   };
 
   const handleDrop = async (e: any) => {
-    console.log('drop');
     setIsLoading(true);
     e.preventDefault();
     e.stopPropagation();
@@ -112,7 +117,7 @@ const Upload = () => {
           accept=".doc, docx, .pdf, .epub, .mobi, .txt"
           type="file"
           hidden
-          multiple
+          // multiple
           onChange={handleOnChange}
         />
       </Button>

@@ -15,14 +15,24 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
   }
 
   try {
-    const bookTitles: any = JSON.parse(req.body);
-    bookTitles.forEach(async (bookTitle: any) => {
-      const updatedBook = await prisma.book.updateMany({
+    const body: any = JSON.parse(req.body);
+    const manuscriptTitles: any = body.files;
+    const userEmail: any = body.userEmail;
+
+    const user = await prisma.user.findUnique({
+      where: {
+        email: userEmail,
+      },
+    });
+
+    manuscriptTitles.forEach(async (manuscriptTitle: any) => {
+      const updatedManuscript = await prisma.manuscript.updateMany({
         where: {
-          title: bookTitle,
+          title: manuscriptTitle,
+          userId: user?.id,
         },
         data: {
-          uploaded: true,
+          active: true,
         },
       });
     });

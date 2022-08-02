@@ -1,10 +1,61 @@
 -- delete all previous records
-TRUNCATE "Agency", "Author", "Book", "Analytics" RESTART IDENTITY;
+TRUNCATE "_BookToManuscript", "User", "Manuscript", "ManuscriptAnalysis", "Book", "BookAnalysis", "BestSellerListAnalysis", "ArchTypeAnalysis" RESTART IDENTITY;
 
--- insert agencies
-insert into "Agency" ("name", "createdAt", "updatedAt") values ('Elite Book Shop', NOW(), NOW());
-insert into "Agency" ("name", "createdAt", "updatedAt") values ('Pickwick Books', NOW(), NOW());
-insert into "Agency" ("name", "createdAt", "updatedAt") values ('Wind City Books', NOW(), NOW());
+-- User Table
+insert into "User" ("email") values ('idan.hahn@karoo.ai');
+insert into "User" ("email") values ('jeremy.esekow@karoo.ai');
+insert into "User" ("email") values ('gavin.marcus@karoo.ai');
+
+
+-- Manuscript Table
+
+-- User 1
+insert into "Manuscript" ("title", "genre", "logline", "keyWords", "subjects", "active", "internalTextId", "createdAt", "updatedAt", "userId") values ('Deception Point by Dan Brown', 'Thriller', 'On the eve of a presidential election, NASA discovers an extraterrestrial meteorite in the Arctic. The discovery could potentially be a deciding factor in the presidential election. One of the key issues is whether to continue funding NASA; incumbent President Zachary Herney favors supporting space research. Ashe discovers that Tench''s claims are true, but also finds out that NASA lied about the origin of the meteorite. Rachel and Gabrielle swap photo evidence of Sexton''s affair with Gabrielle to humiliate him and ruin his chances of winning the election.', '{keyword1, keyword2}', '{subject1, subject2}', false, 1, NOW(), NOW(), 1);
+insert into "Manuscript" ("title", "genre", "logline", "keyWords", "subjects", "active", "internalTextId", "createdAt", "updatedAt", "userId") values ('Ender''s Game by Orson Scott Card', 'Sci-fi', 'In the future, humanity has mastered interplanetary spaceflight. They encounter an insect-like alien race called the Formics, derogatorily named "buggers" Andrew "Ender" Wiggin is born a "Third": a rare exception to Earth''s two-child policy. Ender, now ten years old, is promoted to Command School on Eros. On Earth, Peter Wiggin uses a global communication system to post political essays under the pseudonym "Locke" Ender is prevented from returning home as he would be exploited by Peter and others. Ender is sent to a planet where he discovers the dormant egg of a Formic queen. Ender takes the egg and writes The Hive Queen under the alias "Speaker for the Dead". Peter, now the leader of Earth, recognizes Ender as the author and asks him to write a book about him.', '{keyword1, keyword2}', '{subject1, subject2}', false, 2, NOW(), NOW(), 1);
+-- User 2
+insert into "Manuscript" ("title", "genre", "logline", "keyWords", "subjects", "active", "internalTextId", "createdAt", "updatedAt", "userId") values ('Deception Point by Dan Brown', 'Thriller', 'On the eve of a presidential election, NASA discovers an extraterrestrial meteorite in the Arctic. The discovery could potentially be a deciding factor in the presidential election. One of the key issues is whether to continue funding NASA; incumbent President Zachary Herney favors supporting space research. Ashe discovers that Tench''s claims are true, but also finds out that NASA lied about the origin of the meteorite. Rachel and Gabrielle swap photo evidence of Sexton''s affair with Gabrielle to humiliate him and ruin his chances of winning the election.', '{keyword1, keyword2}', '{subject1, subject2}', false, 1, NOW(), NOW(), 2);
+insert into "Manuscript" ("title", "genre", "logline", "keyWords", "subjects", "active", "internalTextId", "createdAt", "updatedAt", "userId") values ('Ender''s Game by Orson Scott Card', 'Sci-fi', 'In the future, humanity has mastered interplanetary spaceflight. They encounter an insect-like alien race called the Formics, derogatorily named "buggers" Andrew "Ender" Wiggin is born a "Third": a rare exception to Earth''s two-child policy. Ender, now ten years old, is promoted to Command School on Eros. On Earth, Peter Wiggin uses a global communication system to post political essays under the pseudonym "Locke" Ender is prevented from returning home as he would be exploited by Peter and others. Ender is sent to a planet where he discovers the dormant egg of a Formic queen. Ender takes the egg and writes The Hive Queen under the alias "Speaker for the Dead". Peter, now the leader of Earth, recognizes Ender as the author and asks him to write a book about him.', '{keyword1, keyword2}', '{subject1, subject2}', false, 2, NOW(), NOW(), 2);
+-- User 3
+insert into "Manuscript" ("title", "genre", "logline", "keyWords", "subjects", "active", "internalTextId", "createdAt", "updatedAt", "userId") values ('Deception Point by Dan Brown', 'Thriller', 'On the eve of a presidential election, NASA discovers an extraterrestrial meteorite in the Arctic. The discovery could potentially be a deciding factor in the presidential election. One of the key issues is whether to continue funding NASA; incumbent President Zachary Herney favors supporting space research. Ashe discovers that Tench''s claims are true, but also finds out that NASA lied about the origin of the meteorite. Rachel and Gabrielle swap photo evidence of Sexton''s affair with Gabrielle to humiliate him and ruin his chances of winning the election.', '{keyword1, keyword2}', '{subject1, subject2}', false, 1, NOW(), NOW(), 3);
+insert into "Manuscript" ("title", "genre", "logline", "keyWords", "subjects", "active", "internalTextId", "createdAt", "updatedAt", "userId") values ('Ender''s Game by Orson Scott Card', 'Sci-fi', 'In the future, humanity has mastered interplanetary spaceflight. They encounter an insect-like alien race called the Formics, derogatorily named "buggers" Andrew "Ender" Wiggin is born a "Third": a rare exception to Earth''s two-child policy. Ender, now ten years old, is promoted to Command School on Eros. On Earth, Peter Wiggin uses a global communication system to post political essays under the pseudonym "Locke" Ender is prevented from returning home as he would be exploited by Peter and others. Ender is sent to a planet where he discovers the dormant egg of a Formic queen. Ender takes the egg and writes The Hive Queen under the alias "Speaker for the Dead". Peter, now the leader of Earth, recognizes Ender as the author and asks him to write a book about him.', '{keyword1, keyword2}', '{subject1, subject2}', false, 2, NOW(), NOW(), 3);
+
+
+-- Manuscript Analysis Table
+
+-- User 1
+insert into "ManuscriptAnalysis" ("plotStructure", "createdAt", "updatedAt", "manuscriptId") values ('{25,32,26,24,24,22,25,26,25,30,31,31,34,41,46,48,48,49,44,43,42,38,36,30,25,23,18,16,18,13,10,1,-7,-5,-7,-12,-17,-16,-21,-19,-17,-13,-4,-6,-5,-3,5,5,6,4,3,4,5,1,-4,-3,-4,-5,-5,-6,-6,-11,-12,-9,-4,0,-1,2,4,5,10,12,13,15,14,16,17,15,12,10,-2,-7,-12,-19,-26,-35,-43,-49,-47,-46,-45,-48,-46,-43,-38,-32,-26,-22,-20,-14}', NOW(), NOW(), 1);
+insert into "ManuscriptAnalysis" ("plotStructure", "createdAt", "updatedAt", "manuscriptId") values ('{22,23,24,19,21,29,35,34,39,40,45,40,42,50,34,29,28,32,26,21,20,14,22,12,8,-1,3,0,-18,-18,-20,-26,-34,-41,-45,-41,-40,-42,-25,-21,-9,-19,-19,-5,-4,2,4,12,16,21,19,24,31,26,34,25,30,32,27,24,17,14,11,0,-11,-22,-27,-37,-44,-49,-38,-29,-28,-29, -25, -22,-16,-13,-8,5,2,3,5,1,9,3,-11,-30,-31,-19,-26,-37,-37,-37, -38, -28, -28, -20, -15, -24}', NOW(), NOW(), 2);
+
+-- User 2
+insert into "ManuscriptAnalysis" ("plotStructure", "createdAt", "updatedAt", "manuscriptId") values ('{25,32,26,24,24,22,25,26,25,30,31,31,34,41,46,48,48,49,44,43,42,38,36,30,25,23,18,16,18,13,10,1,-7,-5,-7,-12,-17,-16,-21,-19,-17,-13,-4,-6,-5,-3,5,5,6,4,3,4,5,1,-4,-3,-4,-5,-5,-6,-6,-11,-12,-9,-4,0,-1,2,4,5,10,12,13,15,14,16,17,15,12,10,-2,-7,-12,-19,-26,-35,-43,-49,-47,-46,-45,-48,-46,-43,-38,-32,-26,-22,-20,-14}', NOW(), NOW(), 3);
+insert into "ManuscriptAnalysis" ("plotStructure", "createdAt", "updatedAt", "manuscriptId") values ('{22,23,24,19,21,29,35,34,39,40,45,40,42,50,34,29,28,32,26,21,20,14,22,12,8,-1,3,0,-18,-18,-20,-26,-34,-41,-45,-41,-40,-42,-25,-21,-9,-19,-19,-5,-4,2,4,12,16,21,19,24,31,26,34,25,30,32,27,24,17,14,11,0,-11,-22,-27,-37,-44,-49,-38,-29,-28,-29, -25, -22,-16,-13,-8,5,2,3,5,1,9,3,-11,-30,-31,-19,-26,-37,-37,-37, -38, -28, -28, -20, -15, -24}', NOW(), NOW(), 4);
+
+-- User 3
+insert into "ManuscriptAnalysis" ("plotStructure", "createdAt", "updatedAt", "manuscriptId") values ('{25,32,26,24,24,22,25,26,25,30,31,31,34,41,46,48,48,49,44,43,42,38,36,30,25,23,18,16,18,13,10,1,-7,-5,-7,-12,-17,-16,-21,-19,-17,-13,-4,-6,-5,-3,5,5,6,4,3,4,5,1,-4,-3,-4,-5,-5,-6,-6,-11,-12,-9,-4,0,-1,2,4,5,10,12,13,15,14,16,17,15,12,10,-2,-7,-12,-19,-26,-35,-43,-49,-47,-46,-45,-48,-46,-43,-38,-32,-26,-22,-20,-14}', NOW(), NOW(), 5);
+insert into "ManuscriptAnalysis" ("plotStructure", "createdAt", "updatedAt", "manuscriptId") values ('{22,23,24,19,21,29,35,34,39,40,45,40,42,50,34,29,28,32,26,21,20,14,22,12,8,-1,3,0,-18,-18,-20,-26,-34,-41,-45,-41,-40,-42,-25,-21,-9,-19,-19,-5,-4,2,4,12,16,21,19,24,31,26,34,25,30,32,27,24,17,14,11,0,-11,-22,-27,-37,-44,-49,-38,-29,-28,-29, -25, -22,-16,-13,-8,5,2,3,5,1,9,3,-11,-30,-31,-19,-26,-37,-37,-37, -38, -28, -28, -20, -15, -24}', NOW(), NOW(), 6);
+
+
+-- Book Table
+insert into "Book" ("title", "author", "genre", "publicationDate", "description", "keyWords", "subjects", "isbn13", "isbn10", "amazonProductUrl", "createdAt", "updatedAt") 
+            values ('Ready Player One', 'Ernest Cline', 'Sci-fi', '2011-08-01', 'A young programmer is selected to participate in a special program to test the limits of human intelligence. He is given a mission to find the mysterious program that will destroy the world.', '{keyword1, keyword2}', '{subject1, subject2}', '978-0-553-56908-3', '307887448', 'https://www.amazon.com/Ready-Player-One-Ernest-Cline/dp/0-553-56908-3', NOW(), NOW());
+
+insert into "Book" ("title", "author", "genre", "publicationDate", "description", "keyWords", "subjects", "isbn13", "isbn10", "amazonProductUrl", "createdAt", "updatedAt") 
+            values ('The Singularity Trap', 'Dennis E. Taylor', 'Sci fi', '2018-07-01', 'Determined to give his wife and children a better life back home, Ivan Pritchard ventures to the edge of known space to join the crew of the Mad Astra as an asteroid miner. He''s prepared for hard work and loneliness—but not the unthinkable. After coming into contact with a mysterious alien substance, Pritchard finds an unwelcome entity sharing his mind, and a disturbing physical transformation taking place. With his very humanity at stake, Pritchard must save mankind from a full-scale interstellar war.','{keyword1, keyword2}', '{subject1, subject2}', '9781603934190', '', 'https://www.amazon.com/The-Singularity-Trap/dp/B07BHVR59C?tag=NYTBS-20', NOW(), NOW());
+
+-- User 1
+insert into "_BookToManuscript" values (1, 1);
+insert into "_BookToManuscript" values (2, 1);
+
+-- User 2
+insert into "_BookToManuscript" values (1, 3);
+insert into "_BookToManuscript" values (2, 3);
+
+-- User 3
+insert into "_BookToManuscript" values (1, 5);
+insert into "_BookToManuscript" values (2, 5);
+
+
+
 
 -- insert authors
 insert into "Author" ("name", "trending", "createdAt", "updatedAt", "agencyId") values ('Orson Scott Card', 0,NOW(), NOW(),1);
@@ -15,16 +66,16 @@ insert into "Author" ("name", "trending", "createdAt", "updatedAt", "agencyId") 
 insert into "Author" ("name", "trending", "createdAt", "updatedAt", "agencyId") values ('Jessica Spencer', -1,NOW(), NOW(),3);
 
 -- insert books
-insert into "Book" ("title", "genre", "cover", "createdAt", "updatedAt", "authorId", "uploaded") values ('Ender''s Game', 'Sci-fi', '/res/Ender''s Game - Orson Scott Card.jpg', NOW(), NOW(), 1, false);
-insert into "Book" ("title", "genre", "cover", "createdAt", "updatedAt", "authorId", "uploaded") values ('Angels & Demons', 'Mystery', '/res/Angels & Demons - Dan Brown.jpg', NOW(), NOW(), 2, false);
-insert into "Book" ("title", "genre", "cover", "createdAt", "updatedAt", "authorId", "uploaded") values ('The Martian', 'Sci-fi', '/res/The Martian - Andy Weir.jpg', NOW(), NOW(), 3, false);
-insert into "Book" ("title", "genre", "cover", "createdAt", "updatedAt", "authorId", "uploaded") values ('The Last Shadow', 'Sci-fi', '/res/The Last Shadow - Orson Scott Card.jpg', NOW(), NOW(), 1, false);
-insert into "Book" ("title", "genre", "cover", "createdAt", "updatedAt", "authorId", "uploaded") values ('Digital Fortress', 'Thriller', '/res/Digital Fortress - Dan Brown.jpg', NOW(), NOW(), 2, false);
-insert into "Book" ("title", "genre", "cover", "createdAt", "updatedAt", "authorId", "uploaded") values ('Deception Point', 'Mystery', '/res/Deception Point - Dan Brown.jpg', NOW(), NOW(), 2, false);
-insert into "Book" ("title", "genre", "cover", "createdAt", "updatedAt", "authorId", "uploaded") values ('The Maze Runner', 'Young Adult', '/res/The Maze Runner - James Dashner.jpg', NOW(), NOW(), 4, false);
-insert into "Book" ("title", "genre", "cover", "createdAt", "updatedAt", "authorId", "uploaded") values ('The Fever Code', 'Young Adult', '/res/The Fever Code - James Dashner.jpg', NOW(), NOW(), 4, false);
-insert into "Book" ("title", "genre", "cover", "createdAt", "updatedAt", "authorId", "uploaded") values ('Critical Point', 'Sci-fi', '/res/Critical Point - S L Huang.jpg', NOW(), NOW(), 5, false);
-insert into "Book" ("title", "genre", "cover", "createdAt", "updatedAt", "authorId", "uploaded") values ('Never Silly Sophie', 'Romance', '/res/Never Silly Sophie - Jessica Spencer.jpg', NOW(), NOW(), 6, false);
+insert into "Book" ("title", "genre", "cover", "createdAt", "updatedAt", "authorId", "uploaded", "userId") values ('Ender''s Game', 'Sci-fi', '/res/Ender''s Game - Orson Scott Card.jpg', NOW(), NOW(), 1, false, 1);
+insert into "Book" ("title", "genre", "cover", "createdAt", "updatedAt", "authorId", "uploaded", "userId") values ('Angels & Demons', 'Mystery', '/res/Angels & Demons - Dan Brown.jpg', NOW(), NOW(), 2, false, 1);
+insert into "Book" ("title", "genre", "cover", "createdAt", "updatedAt", "authorId", "uploaded", "userId") values ('The Martian', 'Sci-fi', '/res/The Martian - Andy Weir.jpg', NOW(), NOW(), 3, false, 1);
+insert into "Book" ("title", "genre", "cover", "createdAt", "updatedAt", "authorId", "uploaded", "userId") values ('The Last Shadow', 'Sci-fi', '/res/The Last Shadow - Orson Scott Card.jpg', NOW(), NOW(), 1, false, 1);
+insert into "Book" ("title", "genre", "cover", "createdAt", "updatedAt", "authorId", "uploaded", "userId") values ('Digital Fortress', 'Thriller', '/res/Digital Fortress - Dan Brown.jpg', NOW(), NOW(), 2, false, 1);
+insert into "Book" ("title", "genre", "cover", "createdAt", "updatedAt", "authorId", "uploaded", "userId") values ('Deception Point', 'Mystery', '/res/Deception Point - Dan Brown.jpg', NOW(), NOW(), 2, false, 1);
+insert into "Book" ("title", "genre", "cover", "createdAt", "updatedAt", "authorId", "uploaded", "userId") values ('The Maze Runner', 'Young Adult', '/res/The Maze Runner - James Dashner.jpg', NOW(), NOW(), 4, false, 1);
+insert into "Book" ("title", "genre", "cover", "createdAt", "updatedAt", "authorId", "uploaded", "userId") values ('The Fever Code', 'Young Adult', '/res/The Fever Code - James Dashner.jpg', NOW(), NOW(), 4, false, 1);
+insert into "Book" ("title", "genre", "cover", "createdAt", "updatedAt", "authorId", "uploaded", "userId") values ('Critical Point', 'Sci-fi', '/res/Critical Point - S L Huang.jpg', NOW(), NOW(), 5, false, 1);
+insert into "Book" ("title", "genre", "cover", "createdAt", "updatedAt", "authorId", "uploaded", "userId") values ('Never Silly Sophie', 'Romance', '/res/Never Silly Sophie - Jessica Spencer.jpg', NOW(), NOW(), 6, false, 1);
 
 -- insert analytics
 insert into "Analytics" ("totalScore", "valuation", "valuationScore", "recommendation", "readability", "readabilityScore", "paceScore", "complexityScore", "structure", "structureScore", "trendingScore","synopsis", "plotStructure", "createdAt", "updatedAt", "bookId") 
