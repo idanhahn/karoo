@@ -137,8 +137,8 @@ export async function getServerSideProps() {
   //   },
   // });
   // const books = JSON.parse(JSON.stringify(booksObj));
-  const books = {};
-  return { props: { books } };
+  const booksTmp = {};
+  return { props: { booksTmp } };
 }
 
 export default Manuscripts;
