@@ -126,17 +126,18 @@ const Manuscripts = ({ books }: { books: any }) => {
 };
 
 export async function getServerSideProps() {
-  const booksObj = await prisma.book.findMany({
-    include: {
-      author: {
-        include: {
-          agency: true,
-        },
-      },
-      analytics: true,
-    },
-  });
-  const books = JSON.parse(JSON.stringify(booksObj));
+  // const booksObj = await prisma.book.findMany({
+  //   include: {
+  //     author: {
+  //       include: {
+  //         agency: true,
+  //       },
+  //     },
+  //     analytics: true,
+  //   },
+  // });
+  // const books = JSON.parse(JSON.stringify(booksObj));
+  const books = {};
   return { props: { books } };
 }
 

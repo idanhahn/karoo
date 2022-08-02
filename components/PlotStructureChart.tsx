@@ -89,7 +89,6 @@ const PlotStructureChart = ({ plotData }: { plotData: number[] }) => {
           font: {
             family: 'Poppins',
             size: 24,
-            weight: 500,
           },
         },
         ticks: {

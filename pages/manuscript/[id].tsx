@@ -99,10 +99,10 @@ const Manuscript = ({ manuscript }: { manuscript: any }) => {
     setAnchorEl(null);
   };
 
-  const manuscriptRef = useRef<HTMLIFrameElement>(null);
-  const pageRef = useRef<HTMLElement>(null);
+  const manuscriptRef = useRef<any>(null);
+  const pageRef = useRef<null | HTMLElement>(null);
 
-  const getPagePosition = (scrollPosition: number) => {
+  const getPagePosition: any = (scrollPosition: number) => {
     if (manuscriptRef.current) {
       const maxScrollPosition: number = manuscriptRef.current?.clientHeight;
       return Math.floor((scrollPosition * (maxScrollPosition - 1084)) / 100);
