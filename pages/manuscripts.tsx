@@ -3,7 +3,7 @@ import { useRouter } from 'next/router';
 import prisma from '../lib/prisma';
 import { getSession } from '@auth0/nextjs-auth0';
 import Loader from '../components/Loader';
-import Upload from '../components/upload';
+import Upload from '../components/Upload';
 
 const Manuscripts = ({ manuscripts }: { manuscripts: any }) => {
   const router = useRouter();
