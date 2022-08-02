@@ -32,6 +32,17 @@
   padding-top: 20px;
 }
 
+.compareSelect {
+  flex: 1;
+}
+
+.bookSelect {
+}
+
+.right {
+  flex: 1;
+}
+
 .analysisName {
   font-size: 28px;
   font-weight: semibold;

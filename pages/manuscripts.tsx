@@ -1,15 +1,18 @@
 import {
   Box,
+  Button,
   FormControl,
   IconButton,
   InputAdornment,
   InputLabel,
+  Menu,
+  MenuItem,
   OutlinedInput,
   Slider,
   Tooltip,
   Typography,
 } from '@mui/material';
-import React, { useRef } from 'react';
+import React, { useRef, useState } from 'react';
 import TimelineIcon from '@mui/icons-material/Timeline';
 import GraphicEqIcon from '@mui/icons-material/GraphicEq';
 import SpeedIcon from '@mui/icons-material/Speed';
@@ -17,6 +20,7 @@ import GroupsOutlinedIcon from '@mui/icons-material/GroupsOutlined';
 import PieChartOutlineIcon from '@mui/icons-material/PieChartOutline';
 import SubjectIcon from '@mui/icons-material/Subject';
 import SearchOutlinedIcon from '@mui/icons-material/SearchOutlined';
+import AddCircleOutlineOutlinedIcon from '@mui/icons-material/AddCircleOutlineOutlined';
 
 import styles from './manuscripts.module.css';
 import PlotStructureChart from '../components/PlotStructureChart';
@@ -71,7 +75,30 @@ const marks = [
   },
 ];
 
+const compareOptions = ['Book 1', 'Book 2', 'Book 3'];
+
 const Details = ({ book }: { book: any }) => {
+  const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
+  const [selectedIndex, setSelectedIndex] = useState(0);
+
+  const open = Boolean(anchorEl);
+
+  const handleClickCompare = (event: React.MouseEvent<HTMLElement>) => {
+    setAnchorEl(event.currentTarget);
+  };
+
+  const handleMenuItemClick = (
+    event: React.MouseEvent<HTMLElement>,
+    index: number
+  ) => {
+    setSelectedIndex(index);
+    setAnchorEl(null);
+  };
+
+  const handleClose = () => {
+    setAnchorEl(null);
+  };
+
   const bookRef = useRef<HTMLIFrameElement>(null);
   const pageRef = useRef<HTMLElement>(null);
 
@@ -143,10 +170,24 @@ const Details = ({ book }: { book: any }) => {
         </Box>
       </Box>
       <Box className={styles.title}>
-        <Typography className={styles.bookName}>
-          {book.title} by{' '}
-          <span className={styles.authorName}>{book.author.name}</span>
-        </Typography>
+        <Box className={styles.compareSelect}>
+          <Button
+            sx={{ ml: 5, color: '#000', borderColor: '#000' }}
+            variant="outlined"
+            size="large"
+            startIcon={<AddCircleOutlineOutlinedIcon />}
+            onClick={handleClickCompare}
+          >
+            Compare
+          </Button>
+        </Box>
+        <Box className={styles.bookSelect}>
+          <Typography className={styles.bookName}>
+            {book.title} by{' '}
+            <span className={styles.authorName}>{book.author.name}</span>
+          </Typography>
+        </Box>
+        <Box className={styles.right}></Box>
       </Box>
       <Box sx={{ mt: 4 }} className={styles.chartSection}>
         <Typography className={styles.analysisName}>
@@ -195,6 +236,24 @@ const Details = ({ book }: { book: any }) => {
         </Box>
       </Box>
       <Box className={styles.suggestions}></Box>
+
+      <Menu
+        id="compare-menu"
+        anchorEl={anchorEl}
+        keepMounted
+        open={open}
+        onClose={handleClose}
+      >
+        {compareOptions.map((option, index) => (
+          <MenuItem
+            key={option}
+            selected={index === selectedIndex}
+            onClick={(event) => handleMenuItemClick(event, index)}
+          >
+            {option}
+          </MenuItem>
+        ))}
+      </Menu>
     </Box>
   );
 };
