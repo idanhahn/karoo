@@ -4,7 +4,7 @@ import { useRouter } from 'next/router';
 import { withPageAuthRequired } from '@auth0/nextjs-auth0';
 import { useUser } from '@auth0/nextjs-auth0';
 
-import styles from './upload.module.css';
+import styles from './Upload.module.css';
 import Loader from './Loader';
 
 const Upload = () => {
