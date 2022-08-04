@@ -22,6 +22,7 @@ import PieChartOutlineIcon from '@mui/icons-material/PieChartOutline';
 import SubjectIcon from '@mui/icons-material/Subject';
 import SearchOutlinedIcon from '@mui/icons-material/SearchOutlined';
 import AddCircleOutlineOutlinedIcon from '@mui/icons-material/AddCircleOutlineOutlined';
+import ClearOutlinedIcon from '@mui/icons-material/ClearOutlined';
 
 import styles from './[id].module.css';
 import PlotStructureChart from '../../components/PlotStructureChart';
@@ -102,6 +103,10 @@ const Manuscript = ({
     setAnchorEl(null);
   };
 
+  const handleClearCompare = () => {
+    setCompareOption(null);
+  };
+
   const manuscriptRef = useRef<any>(null);
   const pageRef = useRef<null | HTMLElement>(null);
 
@@ -176,15 +181,26 @@ const Manuscript = ({
       </Box>
       <Box sx={{ mt: 3 }} className={styles.title}>
         <Box className={styles.compareSelect}>
-          <Button
-            sx={{ ml: { xs: 5, xl: 20 }, color: '#000', borderColor: '#000' }}
-            variant="outlined"
-            size="large"
-            startIcon={<AddCircleOutlineOutlinedIcon />}
-            onClick={handleClickCompare}
-          >
-            Compare
-          </Button>
+          {compareOption ? (
+            <Box sx={{ ml: { xs: 5, ml: 20 } }} className={styles.compareClear}>
+              <Typography className={styles.compareSelectedOption}>
+                {compareOption.title}
+              </Typography>
+              <IconButton sx={{ color: 'red' }} onClick={handleClearCompare}>
+                <ClearOutlinedIcon />
+              </IconButton>
+            </Box>
+          ) : (
+            <Button
+              sx={{ ml: { xs: 5, xl: 20 }, color: '#000', borderColor: '#000' }}
+              variant="outlined"
+              size="large"
+              startIcon={<AddCircleOutlineOutlinedIcon />}
+              onClick={handleClickCompare}
+            >
+              Compare
+            </Button>
+          )}
         </Box>
         <Box className={styles.manuscriptSelect}>
           <Typography className={styles.manuscriptName}>
@@ -271,7 +287,7 @@ const Manuscript = ({
           <Typography sx={{ ml: 2 }} color="secondary">
             Best Seller List
           </Typography>
-          {compareOptions.bestSellerList.map((option: any, index) => (
+          {compareOptions.bestSellerList.map((option: any) => (
             <MenuItem
               key={option.title}
               onClick={(event) => handleMenuItemClick(option)}
@@ -283,23 +299,23 @@ const Manuscript = ({
         <Divider />
         <Box sx={{ ml: 2, mr: 2, mb: 1 }}>
           <Typography sx={{ ml: 2 }} color="secondary">
-            Archtypes
+            Similar Books
           </Typography>
-          {compareOptions.archtypeList.map((option: any, index) => (
+          {compareOptions.similarBooksList.map((option: any) => (
             <MenuItem
               key={option.title}
               onClick={() => handleMenuItemClick(option)}
             >
-              {option.title}
+              {option.title} by {option.author}
             </MenuItem>
           ))}
         </Box>
         <Divider />
         <Box sx={{ ml: 2, mr: 2, mb: 1 }}>
           <Typography sx={{ ml: 2 }} color="secondary">
-            Similar Books
+            Archtypes
           </Typography>
-          {compareOptions.similarBooksList.map((option: any, index) => (
+          {compareOptions.archtypeList.map((option: any) => (
             <MenuItem
               key={option.title}
               onClick={() => handleMenuItemClick(option)}
@@ -335,6 +351,7 @@ export async function getServerSideProps(params: any) {
   const similarBooksOptions = similarBooksObj?.map((obj) => {
     return {
       title: obj.title,
+      author: obj.author,
       plotStructure: obj.analysis?.plotStructure,
     };
   });

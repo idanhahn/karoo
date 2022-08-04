@@ -36,6 +36,17 @@
   flex: 1;
 }
 
+.compareClear {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  align-items: center;
+}
+
+.compareSelectedOption {
+  font-size: 18px;
+}
+
 .manuscriptSelect {
 }
 
