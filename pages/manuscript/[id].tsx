@@ -360,7 +360,7 @@ export async function getServerSideProps(params: any) {
   // according to the manuscript, get best seller compare options
   const bestSellerListObj = await prisma.bestSellerListAnalysis.findMany({
     where: {
-      genre: manuscriptObj?.genre,
+      genre: manuscriptObj?.genre!,
     },
   });
 
