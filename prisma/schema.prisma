@@ -49,7 +49,7 @@ model Book {
   genre              String
   publicationDate    DateTime
   description        String?
-  keyWords           String[]
+  keywords           String[]
   subjects           String[]
   isbn13             String?
   isbn10             String?
@@ -70,15 +70,18 @@ model BookAnalysis {
 }
 
 model BestSellerListAnalysis {
-  id            Int    @id @default(autoincrement())
-  class         String
+  id            Int        @id @default(autoincrement())
+  name          String
+  genre         String
+  from          DateTime   @default(now())
+  to            DateTime   @default(now())
   plotStructure Int[]
   createdAt     DateTime   @default(now())
   updatedAt     DateTime   @default(now())
 }
 
-model ArchTypeAnalysis {
-  id            Int    @id @default(autoincrement())
+model ArchtypeAnalysis {
+  id            Int        @id @default(autoincrement())
   class         String
   plotStructure Int[]
   createdAt     DateTime   @default(now())

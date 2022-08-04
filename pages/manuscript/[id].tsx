@@ -1,6 +1,7 @@
 import {
   Box,
   Button,
+  Divider,
   FormControl,
   IconButton,
   InputAdornment,
@@ -26,30 +27,28 @@ import styles from './[id].module.css';
 import PlotStructureChart from '../../components/PlotStructureChart';
 import prisma from '../../lib/prisma';
 
-import manuscriptContent from '../../assets/sample_manuscripts/sampleLong';
 import manuscriptContent1 from '../../assets/sample_manuscripts/manuscript1';
 import manuscriptContent2 from '../../assets/sample_manuscripts/manuscript2';
-import manuscriptContent3 from '../../assets/sample_manuscripts/manuscript3';
-import manuscriptContent4 from '../../assets/sample_manuscripts/manuscript4';
-import manuscriptContent5 from '../../assets/sample_manuscripts/manuscript5';
-import manuscriptContent6 from '../../assets/sample_manuscripts/manuscript6';
-import manuscriptContent7 from '../../assets/sample_manuscripts/manuscript7';
-import manuscriptContent8 from '../../assets/sample_manuscripts/manuscript8';
-import manuscriptContent9 from '../../assets/sample_manuscripts/manuscript9';
-import manuscriptContent10 from '../../assets/sample_manuscripts/manuscript10';
-// import manuscript from '../assets/manuscripts/sample';
+// import manuscriptContent3 from '../../assets/sample_manuscripts/manuscript3';
+// import manuscriptContent4 from '../../assets/sample_manuscripts/manuscript4';
+// import manuscriptContent5 from '../../assets/sample_manuscripts/manuscript5';
+// import manuscriptContent6 from '../../assets/sample_manuscripts/manuscript6';
+// import manuscriptContent7 from '../../assets/sample_manuscripts/manuscript7';
+// import manuscriptContent8 from '../../assets/sample_manuscripts/manuscript8';
+// import manuscriptContent9 from '../../assets/sample_manuscripts/manuscript9';
+// import manuscriptContent10 from '../../assets/sample_manuscripts/manuscript10';
 
 const manuscripts: any = {
   1: manuscriptContent1.content,
   2: manuscriptContent2.content,
-  3: manuscriptContent3.content,
-  4: manuscriptContent4.content,
-  5: manuscriptContent5.content,
-  6: manuscriptContent6.content,
-  7: manuscriptContent7.content,
-  8: manuscriptContent8.content,
-  9: manuscriptContent9.content,
-  10: manuscriptContent10.content,
+  // 3: manuscriptContent3.content,
+  // 4: manuscriptContent4.content,
+  // 5: manuscriptContent5.content,
+  // 6: manuscriptContent6.content,
+  // 7: manuscriptContent7.content,
+  // 8: manuscriptContent8.content,
+  // 9: manuscriptContent9.content,
+  // 10: manuscriptContent10.content,
 };
 
 const marks = [
@@ -75,9 +74,15 @@ const marks = [
   },
 ];
 
-const compareOptions = ['Book 1', 'Book 2', 'Book 3'];
+const Manuscript = ({
+  manuscript,
+  compareOptions,
+}: {
+  manuscript: any;
+  compareOptions: any;
+}) => {
+  const [compareOption, setCompareOption] = useState<any>(null);
 
-const Manuscript = ({ manuscript }: { manuscript: any }) => {
   const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
   const [selectedIndex, setSelectedIndex] = useState(0);
 
@@ -87,11 +92,9 @@ const Manuscript = ({ manuscript }: { manuscript: any }) => {
     setAnchorEl(event.currentTarget);
   };
 
-  const handleMenuItemClick = (
-    event: React.MouseEvent<HTMLElement>,
-    index: number
-  ) => {
-    setSelectedIndex(index);
+  const handleMenuItemClick = (compareOption: any) => {
+    //setSelectedIndex(index);
+    setCompareOption(compareOption);
     setAnchorEl(null);
   };
 
@@ -118,6 +121,8 @@ const Manuscript = ({ manuscript }: { manuscript: any }) => {
   };
 
   const handleSearchChange = (e: any) => {};
+
+  const handleCompareSearchChange = (e: any) => {};
 
   const handleScroll = () => {
     // console.log(e.target.scrollTop);
@@ -169,10 +174,10 @@ const Manuscript = ({ manuscript }: { manuscript: any }) => {
           </Tooltip>
         </Box>
       </Box>
-      <Box className={styles.title}>
+      <Box sx={{ mt: 3 }} className={styles.title}>
         <Box className={styles.compareSelect}>
           <Button
-            sx={{ ml: 5, color: '#000', borderColor: '#000' }}
+            sx={{ ml: { xs: 5, xl: 20 }, color: '#000', borderColor: '#000' }}
             variant="outlined"
             size="large"
             startIcon={<AddCircleOutlineOutlinedIcon />}
@@ -188,12 +193,15 @@ const Manuscript = ({ manuscript }: { manuscript: any }) => {
         </Box>
         <Box className={styles.right}></Box>
       </Box>
-      <Box sx={{ mt: 4 }} className={styles.chartSection}>
+      <Box sx={{ mt: 6 }} className={styles.chartSection}>
         <Typography className={styles.analysisName}>
           Plot Structure Analysis
         </Typography>
         <Box className={styles.graph}>
-          <PlotStructureChart plotData={manuscript.analysis.plotStructure} />
+          <PlotStructureChart
+            plotData={manuscript.analysis.plotStructure}
+            compareOption={compareOption}
+          />
         </Box>
         <Box sx={{ ml: 4 }} width={700}>
           <Slider
@@ -208,7 +216,7 @@ const Manuscript = ({ manuscript }: { manuscript: any }) => {
           />
         </Box>
       </Box>
-      <Box sx={{ mt: 4, mr: 2, mb: 4 }} className={styles.manuscript}>
+      <Box sx={{ mt: 6, mr: 2, mb: 4 }} className={styles.manuscript}>
         <Box className={styles.manuscriptSection}>
           <Box className={styles.manuscriptSearch}>
             <FormControl sx={{ m: 1 }} className={styles.search}>
@@ -243,32 +251,130 @@ const Manuscript = ({ manuscript }: { manuscript: any }) => {
         open={open}
         onClose={handleClose}
       >
-        {compareOptions.map((option, index) => (
-          <MenuItem
-            key={option}
-            selected={index === selectedIndex}
-            onClick={(event) => handleMenuItemClick(event, index)}
-          >
-            {option}
-          </MenuItem>
-        ))}
+        <Box sx={{ ml: 2, mr: 2, mb: 1 }} className={styles.compareSearch}>
+          <FormControl sx={{ m: 1 }} className={styles.search}>
+            <OutlinedInput
+              id="compare-search"
+              onChange={handleCompareSearchChange}
+              startAdornment={
+                <InputAdornment position="start">
+                  <IconButton>
+                    <SearchOutlinedIcon />
+                  </IconButton>
+                </InputAdornment>
+              }
+              size="small"
+            />
+          </FormControl>
+        </Box>
+        <Box sx={{ ml: 2, mr: 2, mb: 1 }}>
+          <Typography sx={{ ml: 2 }} color="secondary">
+            Best Seller List
+          </Typography>
+          {compareOptions.bestSellerList.map((option: any, index) => (
+            <MenuItem
+              key={option.title}
+              onClick={(event) => handleMenuItemClick(option)}
+            >
+              {option.title}
+            </MenuItem>
+          ))}
+        </Box>
+        <Divider />
+        <Box sx={{ ml: 2, mr: 2, mb: 1 }}>
+          <Typography sx={{ ml: 2 }} color="secondary">
+            Archtypes
+          </Typography>
+          {compareOptions.archtypeList.map((option: any, index) => (
+            <MenuItem
+              key={option.title}
+              onClick={() => handleMenuItemClick(option)}
+            >
+              {option.title}
+            </MenuItem>
+          ))}
+        </Box>
+        <Divider />
+        <Box sx={{ ml: 2, mr: 2, mb: 1 }}>
+          <Typography sx={{ ml: 2 }} color="secondary">
+            Similar Books
+          </Typography>
+          {compareOptions.similarBooksList.map((option: any, index) => (
+            <MenuItem
+              key={option.title}
+              onClick={() => handleMenuItemClick(option)}
+            >
+              {option.title}
+            </MenuItem>
+          ))}
+        </Box>
       </Menu>
     </Box>
   );
 };
 
 export async function getServerSideProps(params: any) {
+  // get the manuscript
   const manuscriptObj = await prisma.manuscript.findFirst({
     where: {
       id: +params['query']['id'],
     },
     include: {
       analysis: true,
+      similarBooks: {
+        include: {
+          analysis: true,
+        },
+      },
     },
   });
+
   const manuscript = JSON.parse(JSON.stringify(manuscriptObj));
+
+  const similarBooksObj = manuscriptObj?.similarBooks;
+  const similarBooksOptions = similarBooksObj?.map((obj) => {
+    return {
+      title: obj.title,
+      plotStructure: obj.analysis?.plotStructure,
+    };
+  });
+  const similarBooksList = JSON.parse(JSON.stringify(similarBooksOptions));
+
+  // according to the manuscript, get best seller compare options
+  const bestSellerListObj = await prisma.bestSellerListAnalysis.findMany({
+    where: {
+      genre: manuscriptObj?.genre,
+    },
+  });
+
+  const bestSellerListOptions = bestSellerListObj.map((obj) => {
+    return {
+      title: `${obj.name} - ${obj.genre}`,
+      plotStructure: obj.plotStructure,
+    };
+  });
+
+  const bestSellerList = JSON.parse(JSON.stringify(bestSellerListOptions));
+
+  // get all archtypes
+  const archtypeListObj = await prisma.archtypeAnalysis.findMany({});
+  const archtypeListOptions = archtypeListObj.map((obj) => {
+    return {
+      title: obj.class,
+      plotStructure: obj.plotStructure,
+    };
+  });
+
+  const archtypeList = JSON.parse(JSON.stringify(archtypeListOptions));
+
+  const compareOptions = {
+    bestSellerList: bestSellerList,
+    archtypeList: archtypeList,
+    similarBooksList: similarBooksList,
+  };
+
   return {
-    props: { manuscript },
+    props: { manuscript, compareOptions },
   };
 }
 

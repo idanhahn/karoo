@@ -1,5 +1,5 @@
 -- delete all previous records
-TRUNCATE "_BookToManuscript", "User", "Manuscript", "ManuscriptAnalysis", "Book", "BookAnalysis", "BestSellerListAnalysis", "ArchTypeAnalysis" RESTART IDENTITY;
+TRUNCATE "_BookToManuscript", "User", "Manuscript", "ManuscriptAnalysis", "Book", "BookAnalysis", "BestSellerListAnalysis", "ArchtypeAnalysis" RESTART IDENTITY;
 
 -- User Table
 insert into "User" ("email") values ('idan.hahn@karoo.ai');
@@ -36,15 +36,40 @@ insert into "ManuscriptAnalysis" ("plotStructure", "createdAt", "updatedAt", "ma
 
 
 -- Book Table
-insert into "Book" ("title", "author", "genre", "publicationDate", "description", "keyWords", "subjects", "isbn13", "isbn10", "amazonProductUrl", "createdAt", "updatedAt") 
-            values ('Ready Player One', 'Ernest Cline', 'Sci-fi', '2011-08-01', 'A young programmer is selected to participate in a special program to test the limits of human intelligence. He is given a mission to find the mysterious program that will destroy the world.', '{keyword1, keyword2}', '{subject1, subject2}', '978-0-553-56908-3', '307887448', 'https://www.amazon.com/Ready-Player-One-Ernest-Cline/dp/0-553-56908-3', NOW(), NOW());
+INSERT INTO "Book" ("title", "author", "genre", "publicationDate", "description",  "subjects", "keywords",  "isbn13", "isbn10", "amazonProductUrl", "createdAt", "updatedAt") VALUES ('Ready Player One', 'Ernest Cline', 'Sci fi', '2011-08-01', 'In the year 2045, reality is an ugly place. The only time Wade Watts really feels alive is when he’s jacked into the OASIS, a vast virtual world where most of humanity spends their days.', '{subjects}', '{keywords}', '9780307887443', '307887448', 'https://www.amazon.com/Ready-Player-One-Ernest-Cline/dp/030788743X?tag=NYTBS-20', NOW(), NOW());
+INSERT INTO "Book" ("title", "author", "genre", "publicationDate", "description",  "subjects", "keywords",  "isbn13", "isbn10", "amazonProductUrl", "createdAt", "updatedAt") VALUES ('The Singularity Trap', 'Dennis E. Taylor', 'Sci fi', '2018-07-01', 'Determined to give his wife and children a better life back home, Ivan Pritchard ventures to the edge of known space to join the crew of the Mad Astra as an asteroid miner. He''s prepared for hard work and loneliness—but not the unthinkable. After coming into contact with a mysterious alien substance, Pritchard finds an unwelcome entity sharing his mind, and a disturbing physical transformation taking place. With his very humanity at stake, Pritchard must save mankind from a full-scale interstellar war.', '{subjects}', '{keywords}', '9781603934190', '', 'https://www.amazon.com/The-Singularity-Trap/dp/B07BHVR59C?tag=NYTBS-20', NOW(), NOW());
+INSERT INTO "Book" ("title", "author", "genre", "publicationDate", "description",  "subjects", "keywords",  "isbn13", "isbn10", "amazonProductUrl", "createdAt", "updatedAt") VALUES ('State of Fear', 'Michael Crichton', 'Thriller', '2015-08-01', 'When a group of eco-terrorists engage in a global conspiracy to generate weather-related natural disasters, its up to environmental lawyer Peter Evans and his team to uncover the subterfuge.', '{subjects}', '{keywords}', '9780061752728', '006175272X', 'https://www.amazon.com/State-Fear-Michael-Crichton-ebook/dp/B000FC2NQW?tag=NYTBS-20', NOW(), NOW());
+INSERT INTO "Book" ("title", "author", "genre", "publicationDate", "description",  "subjects", "keywords",  "isbn13", "isbn10", "amazonProductUrl", "createdAt", "updatedAt") VALUES ('Pirate Latitudes', 'Michael Crichton', 'Adventure', '2009-11-01', 'In the 17th-century Caribbean, a British pirate attacks a Spanish galleon', '{subjects}', '{keywords}', '9780061929373', '61929379', 'https://www.amazon.com/Pirate-Latitudes-Novel-Michael-Crichton/dp/0061929379?tag=NYTBS-20', NOW(), NOW());
+INSERT INTO "Book" ("title", "author", "genre", "publicationDate", "description",  "subjects", "keywords",  "isbn13", "isbn10", "amazonProductUrl", "createdAt", "updatedAt") VALUES ('Eragon', 'Christopher Paolini', 'Fantasy', '2002-08-01', 'When fifteen-year-old Eragon finds a polished blue stone in the forest, he thinks it is the lucky discovery of a poor farm boy. But when the stone brings a dragon hatchling, Eragon soon realizes he has stumbled upon a legacy nearly as old as the Empire itself.', '{subjects}', '{keywords}', '', '', 'https://www.amazon.com/Eragon-Inheritance-Book-Christopher-Paolini/dp/0375826696', NOW(), NOW());
+INSERT INTO "Book" ("title", "author", "genre", "publicationDate", "description",  "subjects", "keywords",  "isbn13", "isbn10", "amazonProductUrl", "createdAt", "updatedAt") VALUES ('The Jefferson Key', 'Steve Berry', 'Thriller', '2011-06-01', 'The former government operative Cotton Malone foils an assassination attempt on the president and finds himself at dangerous odds with a secret society.', '{subjects}', '{keywords}', '9780345530165', '345530160', 'https://www.amazon.com/The-Jefferson-Key-A-Novel/dp/0345505514?tag=NYTBS-20', NOW(), NOW());
+INSERT INTO "Book" ("title", "author", "genre", "publicationDate", "description",  "subjects", "keywords",  "isbn13", "isbn10", "amazonProductUrl", "createdAt", "updatedAt") VALUES ('The Bishop''s Pawn', 'Steve Berry', 'Thriller', '2018-04-01', 'Cotton Malone discovers revelations about the day the Rev. Dr. Martin Luther King Jr. was assassinated.', '{subjects}', '{keywords}', '9781250140234', '1250140234', 'https://www.amazon.com/Bishops-Pawn-Novel-Cotton-Malone-ebook/dp/B074ZRSMQK?tag=NYTBS-20', NOW(), NOW());
+INSERT INTO "Book" ("title", "author", "genre", "publicationDate", "description",  "subjects", "keywords",  "isbn13", "isbn10", "amazonProductUrl", "createdAt", "updatedAt") VALUES ('The Lincoln Myth', 'Steve Berry', 'Thriller', '2014-06-01', 'The ex-government operative Cotton Malone becomes involved in a dangerous conflict set in motion by the founding fathers.', '{subjects}', '{keywords}', '9780345526595', '', 'https://www.amazon.com/The-Lincoln-Myth-Cotton-Malone-ebook/dp/B00F1W0DBI?tag=NYTBS-20', NOW(), NOW());
+INSERT INTO "Book" ("title", "author", "genre", "publicationDate", "description",  "subjects", "keywords",  "isbn13", "isbn10", "amazonProductUrl", "createdAt", "updatedAt") VALUES ('The Malta Exchange', 'Steve Berry', 'Thriller', '2019-03-01', 'The pope is dead. A conclave to select his replacement is about to begin. Cardinals are beginning to arrive at the Vatican, but one has fled Rome for Malta in search of a document that dates back to the 4th century and Constantine the Great.', '{subjects}', '{keywords}', '9781250140272', '1250140277', 'https://www.amazon.com/Malta-Exchange-Novel-Cotton-Malone-ebook/dp/B07D2BV7LW?tag=NYTBS-20', NOW(), NOW());
 
-insert into "Book" ("title", "author", "genre", "publicationDate", "description", "keyWords", "subjects", "isbn13", "isbn10", "amazonProductUrl", "createdAt", "updatedAt") 
-            values ('The Singularity Trap', 'Dennis E. Taylor', 'Sci fi', '2018-07-01', 'Determined to give his wife and children a better life back home, Ivan Pritchard ventures to the edge of known space to join the crew of the Mad Astra as an asteroid miner. He''s prepared for hard work and loneliness—but not the unthinkable. After coming into contact with a mysterious alien substance, Pritchard finds an unwelcome entity sharing his mind, and a disturbing physical transformation taking place. With his very humanity at stake, Pritchard must save mankind from a full-scale interstellar war.','{keyword1, keyword2}', '{subject1, subject2}', '9781603934190', '', 'https://www.amazon.com/The-Singularity-Trap/dp/B07BHVR59C?tag=NYTBS-20', NOW(), NOW());
 
--- User 1
-insert into "_BookToManuscript" values (1, 1);
-insert into "_BookToManuscript" values (2, 1);
+
+-- BookAnalysis Table
+insert into "BookAnalysis" ("plotStructure", "createdAt", "updatedAt", "bookId") values ('{5,22,15,18,32,43,40,28,31,14,-5,-4,-8,-20,-12,-15,-32,-24,-22,-17,-17,-11,0,6,3,17,29,25,38,36,33,29,8,12,-6,-6,0,-14,-21,-25,-30,-33,-33,-30,-4,4,-1,-5,-4,6,2,6,-6,-16,-16,-6,-5,-12,0,3,-10,-21,-23,-29,-13,-2,3,7,8,0,-3,-2,9,19,19,15,9,10,-2,-6,-11,-1,0,7,21,20,28,30,12,-3,-9,-24,-19,-30,-30,-32,-43,-40,-40,-39}', NOW(), NOW(), 1);
+INSERT INTO "BookAnalysis" ("plotStructure", "createdAt", "updatedAt", "bookId") VALUES ('{45,40,31,20,8,-2,-15,-28,-35,-44,-33,-31,-37,-40,-36,-37,-36,-26,-24,-23,-30,-35,-27,-28,-15,-22,-27,-12,-17,-28,-43,-50,-38,-46,-40,-39,-28,-29,-21,-32,-23,-23,-25,-20,-21,-17,-15,-28,-32,-18,-25,-28,-24,-30,-26,-24,-23,-27,-33,-35,-28,-28,-21,-18,-34,-26,-14,-10,-21,-18,-24,-32,-32,-32,-25,-25,-35,-26,-26,-21,-20,-27,-38,-37,-48,-43,-36,-39,-45,-47,-38,-46,-41,-40,-37,-46,-45,-26,-20,-2}', NOW(), NOW(), 2);
+INSERT INTO "BookAnalysis" ("plotStructure", "createdAt", "updatedAt", "bookId") VALUES ('{22,27,31,45,43,42,46,48,46,37,24,14,12,16,6,-8,-13,-9,-4,2,-6,-9,-9,2,6,11,9,4,8,8,5,-4,-2,-7,-17,-19,-20,-19,-11,-8,-15,-16,-2,-2,-5,-6,-13,-27,-29,-37,-40,-42,-46,-42,-19,-5,2,17,23,24,29,20,3,3,1,-13,-26,-24,-16,-5,-2,-7,-12,10,16,13,9,8,10,9,2,-14,-23,-26,-42,-48,-46,-38,-37,-24,-14,-9,10,17,8,9,3,0,-11,-18}', NOW(), NOW(), 3);
+INSERT INTO "BookAnalysis" ("plotStructure", "createdAt", "updatedAt", "bookId") VALUES ('{31,33,35,37,37,39,40,40,48,47,44,49,44,44,46,41,38,36,35,31,25,23,16,13,12,10,13,8,4,-1,-4,0,-5,-5,-8,-11,-12,-10,-10,-10,-13,-13,-12,-8,-6,-4,-3,-4,2,1,3,5,5,5,6,1,1,2,2,1,-4,-1,-3,-1,-1,-4,-11,-22,-23,-26,-32,-36,-38,-42,-42,-40,-39,-42,-49,-44,-43,-40,-41,-36,-38,-36,-31,-19,-14,-13,-13,-12,-11,-14,-15,-14,-10,-4,0,4}', NOW(), NOW(), 4);
+INSERT INTO "BookAnalysis" ("plotStructure", "createdAt", "updatedAt", "bookId") VALUES ('{-2,4,5,8,13,19,31,42,41,25,14,15,11,1,-11,-18,-23,-15,-12,3,-5,-8,-16,-14,-16,-15,-16,-12,-14,-6,0,7,11,9,19,21,18,15,15,17,19,25,19,8,4,4,1,1,3,-7,-20,-25,-22,-22,-19,-10,-16,-18,-16,-3,0,-4,3,-5,-6,0,2,2,-4,-9,-6,-10,-18,-33,-43,-48,-44,-40,-26,-19,-19,-16,-1,4,13,21,21,21,23,24,28,23,30,27,25,9,-6,-24,-38,-35}', NOW(), NOW(), 5);
+INSERT INTO "BookAnalysis" ("plotStructure", "createdAt", "updatedAt", "bookId") VALUES ('{15,23,20,27,36,44,44,41,36,28,16,13,3,3,-6,-11,-3,7,0,-3,-4,-7,-5,-7,-15,-14,-23,-28,-22,-15,-18,-7,-9,-16,-5,-13,-10,-4,-8,-11,2,-8,-7,-4,-3,5,-3,0,3,5,-5,-1,-4,-6,-8,0,10,-1,-8,-17,-11,-11,-10,-1,-9,-20,-35,-32,-31,-27,-31,-37,-40,-49,-44,-41,-35,-30,-29,-27,-22,-17,-18,-17,-12,-2,-2,-3,0,3,4,13,13,22,19,4,4,5,-4,-10}', NOW(), NOW(), 6);
+INSERT INTO "BookAnalysis" ("plotStructure", "createdAt", "updatedAt", "bookId") VALUES ('{35,33,33,47,38,29,24,10,15,14,14,13,4,5,-4,-5,-12,-14,-14,-11,-1,0,-2,1,3,7,3,3,7,17,20,10,-3,-7,-20,-19,-15,-8,-8,-15,-20,-15,-20,-33,-37,-33,-18,-26,-23,-21,-25,-26,-20,-23,-23,-27,-25,-20,-11,-11,-14,-13,-11,-10,-10,-10,-15,-5,5,-2,2,-6,-1,-4,-6,-13,-20,-29,-32,-26,-29,-38,-37,-33,-29,-34,-32,-33,-40,-35,-32,-14,-22,-27,-28,-32,-29,-36,-47,-40}', NOW(), NOW(), 7);
+INSERT INTO "BookAnalysis" ("plotStructure", "createdAt", "updatedAt", "bookId") VALUES ('{-13,-13,-23,-23,-17,-13,-23,-21,-9,-7,-16,-18,-13,0,9,20,30,31,37,48,40,25,28,22,22,17,15,12,1,3,1,3,9,11,13,16,16,18,21,20,19,6,7,-1,-6,-10,-4,3,5,0,-2,0,1,6,5,5,11,16,10,-5,-13,-6,0,9,5,3,15,27,26,21,17,27,31,30,17,10,9,10,3,-6,-15,-4,-6,-12,-13,-11,-8,-9,-13,-19,-29,-33,-36,-47,-46,-42,-45,-44,-44,-36}', NOW(), NOW(), 8);
+INSERT INTO "BookAnalysis" ("plotStructure", "createdAt", "updatedAt", "bookId") VALUES ('{-41,-41,-42,-33,-35,-33,-23,-11,1,7,12,16,19,30,31,32,45,49,42,36,24,12,5,6,-1,0,-7,-17,-18,-22,-21,-21,-16,-12,-17,-10,-9,-1,8,-1,-9,-14,-17,-16,-20,-22,-24,-35,-35,-43,-48,-36,-33,-23,-19,-14,-13,-7,0,-4,0,0,-9,-15,-25,-27,-28,-31,-32,-32,-27,-28,-23,-21,-15,-8,-8,-3,-2,2,3,17,15,10,14,16,14,11,17,16,19,17,10,-5,2,0,-7,-9,4,2}', NOW(), NOW() ,9);
+
+
+-- Similar Books
+
+-- User 1 (Book Similar to Manuscript)
+-- Deception Point Similar to State of Fear, The Lincoln Myth The Malta Exchange
+insert into "_BookToManuscript" values (3, 1);
+insert into "_BookToManuscript" values (8, 1);
+insert into "_BookToManuscript" values (9, 1);
+-- Ender's Game Similar to Ready Player One, THe Singularity Trap
+insert into "_BookToManuscript" values (1, 2);
+insert into "_BookToManuscript" values (2, 2);
 
 -- User 2
 insert into "_BookToManuscript" values (1, 3);
@@ -55,132 +80,18 @@ insert into "_BookToManuscript" values (1, 5);
 insert into "_BookToManuscript" values (2, 5);
 
 
+-- BestSellerListAnalysis
+
+insert into "BestSellerListAnalysis" ("name", "genre", "from", "to", "plotStructure", "createdAt", "updatedAt") values ('New York Bestsellers', 'Sci-fi', NOW(), NOW(), '{8,10,13,17,21,26,31,35,37,39,38,37,34,30,26,21,17,13,9,7,6,6,6,7,8,9,9,10,9,9,8,7,6,6,5,6,7,9,11,14,16,18,19,19,18,16,11,5,-2,-9,-17,-25,-31,-36,-40,-43,-43,-42,-39,-36,-32,-28,-24,-20,-18,-18,-19,-20,-23,-26,-30,-33,-36,-38,-39,-39,-39,-39,-38,-37,-36,-36,-36,-36,-37,-38,-39,-39,-38,-37,-35,-30,-24,-17,-9,-1,6,12,17,21}', NOW(), NOW());
+insert into "BestSellerListAnalysis" ("name", "genre", "from", "to", "plotStructure", "createdAt", "updatedAt") values ('New York Bestsellers', 'Thriller', NOW(), NOW(), '{8,4,-2,-8,-16,-23,-30,-35,-40,-42,-43,-41,-38,-33,-26,-19,-12,-5,2,8,11,15,16,15,13,10,6,2,-2,-5,-7,-9,-9,-8,-5,-1,3,7,12,17,23,27,31,34,35,35,34,32,30,27,25,22,20,18,16,15,14,14,14,15,16,16,17,17,18,18,19,18,18,18,17,16,14,13,12,10,8,6,4,2,0,-1,-3,-5,-5,-5,-4,-2,0,2,6,10,14,18,22,26,29,32,34,35}', NOW(), NOW());
+-- insert into "BestSellerListAnalysis" ("name", "genre", "from", "to", "plotStructure", "createdAt", "updatedAt") values ('New York Bestsellers', 'Mystery', NOW(), NOW(), '{}', NOW(), NOW());
 
 
--- insert authors
-insert into "Author" ("name", "trending", "createdAt", "updatedAt", "agencyId") values ('Orson Scott Card', 0,NOW(), NOW(),1);
-insert into "Author" ("name", "trending", "createdAt", "updatedAt", "agencyId") values ('Dan Brown', 0,NOW(), NOW(),1);
-insert into "Author" ("name", "trending", "createdAt", "updatedAt", "agencyId") values ('Andy Weir', 1,NOW(), NOW(),2);
-insert into "Author" ("name", "trending", "createdAt", "updatedAt", "agencyId") values ('James Dashner', -1,NOW(), NOW(),1);
-insert into "Author" ("name", "trending", "createdAt", "updatedAt", "agencyId") values ('S L Huang', 0,NOW(), NOW(),2);
-insert into "Author" ("name", "trending", "createdAt", "updatedAt", "agencyId") values ('Jessica Spencer', -1,NOW(), NOW(),3);
-
--- insert books
-insert into "Book" ("title", "genre", "cover", "createdAt", "updatedAt", "authorId", "uploaded", "userId") values ('Ender''s Game', 'Sci-fi', '/res/Ender''s Game - Orson Scott Card.jpg', NOW(), NOW(), 1, false, 1);
-insert into "Book" ("title", "genre", "cover", "createdAt", "updatedAt", "authorId", "uploaded", "userId") values ('Angels & Demons', 'Mystery', '/res/Angels & Demons - Dan Brown.jpg', NOW(), NOW(), 2, false, 1);
-insert into "Book" ("title", "genre", "cover", "createdAt", "updatedAt", "authorId", "uploaded", "userId") values ('The Martian', 'Sci-fi', '/res/The Martian - Andy Weir.jpg', NOW(), NOW(), 3, false, 1);
-insert into "Book" ("title", "genre", "cover", "createdAt", "updatedAt", "authorId", "uploaded", "userId") values ('The Last Shadow', 'Sci-fi', '/res/The Last Shadow - Orson Scott Card.jpg', NOW(), NOW(), 1, false, 1);
-insert into "Book" ("title", "genre", "cover", "createdAt", "updatedAt", "authorId", "uploaded", "userId") values ('Digital Fortress', 'Thriller', '/res/Digital Fortress - Dan Brown.jpg', NOW(), NOW(), 2, false, 1);
-insert into "Book" ("title", "genre", "cover", "createdAt", "updatedAt", "authorId", "uploaded", "userId") values ('Deception Point', 'Mystery', '/res/Deception Point - Dan Brown.jpg', NOW(), NOW(), 2, false, 1);
-insert into "Book" ("title", "genre", "cover", "createdAt", "updatedAt", "authorId", "uploaded", "userId") values ('The Maze Runner', 'Young Adult', '/res/The Maze Runner - James Dashner.jpg', NOW(), NOW(), 4, false, 1);
-insert into "Book" ("title", "genre", "cover", "createdAt", "updatedAt", "authorId", "uploaded", "userId") values ('The Fever Code', 'Young Adult', '/res/The Fever Code - James Dashner.jpg', NOW(), NOW(), 4, false, 1);
-insert into "Book" ("title", "genre", "cover", "createdAt", "updatedAt", "authorId", "uploaded", "userId") values ('Critical Point', 'Sci-fi', '/res/Critical Point - S L Huang.jpg', NOW(), NOW(), 5, false, 1);
-insert into "Book" ("title", "genre", "cover", "createdAt", "updatedAt", "authorId", "uploaded", "userId") values ('Never Silly Sophie', 'Romance', '/res/Never Silly Sophie - Jessica Spencer.jpg', NOW(), NOW(), 6, false, 1);
-
--- insert analytics
-insert into "Analytics" ("totalScore", "valuation", "valuationScore", "recommendation", "readability", "readabilityScore", "paceScore", "complexityScore", "structure", "structureScore", "trendingScore","synopsis", "plotStructure", "createdAt", "updatedAt", "bookId") 
-values (90,'$55,000', 10, 'Strong Positive','Good',8,7,8,'Idea',8,6,
-        'In the future, humanity has mastered interplanetary spaceflight. They encounter an insect-like alien race called the Formics, derogatorily named "buggers" Andrew "Ender" Wiggin is born a "Third": a rare exception to Earth''s two-child policy. Ender, now ten years old, is promoted to Command School on Eros. On Earth, Peter Wiggin uses a global communication system to post political essays under the pseudonym "Locke" Ender is prevented from returning home as he would be exploited by Peter and others. Ender is sent to a planet where he discovers the dormant egg of a Formic queen. Ender takes the egg and writes The Hive Queen under the alias "Speaker for the Dead". Peter, now the leader of Earth, recognizes Ender as the author and asks him to write a book about him.',
-        '{22,23,24,19,21,29,35,34,39,40,45,40,42,50,34,29,28,32,26,21,20,14,22,12,8,-1,3,0,-18,-18,-20,-26,-34,-41,-45,-41,-40,-42,-25,-21,-9,-19,-19,-5,-4,2,4,12,16,21,19,24,31,26,34,25,30,32,27,24,17,14,11,0,-11,-22,-27,-37,-44,-49,-38,-29,-28,-29, -25, -22,-16,-13,-8,5,2,3,5,1,9,3,-11,-30,-31,-19,-26,-37,-37,-37, -38, -28, -28, -20, -15, -24}',
-        NOW(),NOW(),1);
-
-insert into "Analytics" ("totalScore", "valuation", "valuationScore", "recommendation", "readability", "readabilityScore", "paceScore", "complexityScore", "structure", "structureScore", "trendingScore", "synopsis", "plotStructure", "createdAt", "updatedAt", "bookId") 
-values (85,'$50,000', 9,'Positive','Very Good',9,7,9,'Three-Acts',10,8,
-        'CERN director Maximilian Kohler discovers one of the facility''s top physicists murdered. The four Preferiti, the cardinals who are most likely to be elected pope, are missing. After finding the first two men dead, they confront the assassin in the act of murdering the third. Langdon and Vittoria fear that Kohler is Janus and that he has come to murder the camerlengo. Just before he dies, Kohler gives Langdon a mini video camera. The cardinals debate whether to elect Ventresca as the new Pope.',
-        '{27,21,25,36,33,40,34,30,18,16,8,2,7,9,14,18,13,26,29,27,20,5,-5,-13,-4,3,7,15,20,29,29,33,47,35,28,29,37,34,29,33,25,17,18,17,12,14,13,10,6,16,14,-4,-12,-12,-18,-16,-17,-21,-15,-14,-24,-38,-39,-38,-42,-45,-47,-28,-17,-4,-9,-4,6,4,-3,-17,-19,-14,-18,-30,-45,-34,-37,-27,-23,-26,-25,-18,0,12,19,16,5,5,-1,-5,-14,-15,-4,7}',
-        NOW(),NOW(),2);
-
-insert into "Analytics" ("totalScore", "valuation", "valuationScore", "recommendation", "readability", "readabilityScore", "paceScore", "complexityScore", "structure", "structureScore", "trendingScore", "synopsis", "plotStructure", "createdAt", "updatedAt", "bookId") 
-values (95,'$60,000', 8,'Strong Positive','Good',10,9,8,'Event',8,9,
-        'With no long-range radio, he must rely on his own resourcefulness to survive. His philosophy is to "work the problem", solving each challenge in turn as it confronts him. Watney''s repeated use of the same airlock results in the decompression of the Hab and nearly kills him. NASA hastily prepares an uncrewed probe to send Watney supplies, but the rocket disintegrates after liftoff. China provides a ready-to-use booster to try again. Beck uses a Manned Maneuvering Unit, MAV, on a tether to reach Watney and bring him back to Hermes.',
-        '{-47,-42,-22,-18,-30,-24,-30,-22,-12,-6,12,17,22,28,24,30,44,43,41,47,42,33,8,11,8,5,5,2,4,-8,-3,-17,-14,-14,-5,-4,-13,-19,-22,-21,-35,-34,-29,-8,-7,-24,-14,6,3,0,8,13,20,20,25,26,7,14,10,-5,-8,-5,14,26,21,27,31,28,24,25,28,33,38,43,32,18,9,11,-8,-15,-4,2,-1,-13,-7,-3,4,11,13,16,22,27,28,23,17,20,22,17,7,0}',
-        NOW(),NOW(),3);
-
-insert into "Analytics" ("totalScore", "valuation", "valuationScore", "recommendation", "readability", "readabilityScore", "paceScore", "complexityScore", "structure", "structureScore", "trendingScore", "synopsis", "plotStructure", "createdAt", "updatedAt", "bookId") 
-values (75,'$45,000', 7,'Neutral','OK',8,5,7,'Idea',8,6,
-        'Jane and Miro Ribeira instantaneously traveled to the planet Herodotus. Jane explained how Andrew Wiggin had created her body. The Hive Queen asked Jane and Sprout to carry slugs onto Thulium''s body. Once placed on her, the substance killed or removed virus worms as they went. Keas, Ravens, and Yachachi were next to be cured. Ruqyaq took them to an area with some Keas and Ravens still alive. Jane instructed the Keas to form a group who wanted to be alone and a group that wished to be with the Ravens. Sprout and Blue visited Ruqyaq to learn about their ancestors, the Huapaya people of the Andes. Sprout decided he would obey Jane and not teach Detouring to anyone, not even his own children;.',
-        '{-12,-16,-19,-17,-21,-29, -31, -37,-37,-30,-29,-32,-41,-40,-44,-35,-32,-29,-18,-17,-11,0,16,28,21,27,29,34,35,43,47,44,42,39,37,34,27,20,10,14,26,17,13,5,-1,-8,-15,-12,-11,-8,-12,-5,-5,-10,-6,-18,-25,-22,-23,-19,-13,-9,-17,-26,-19,-31,-30,-32,-27,-21,-26,-29,-39,-33,-33,-40,-41,-44,-40,-35,-37,-33,-38,-44,-43,-46,-46,-39,-47,-49,-44,-33,-28,-12,-4,-7,-2,12,25,39}',        
-        NOW(),NOW(),4);
-
-insert into "Analytics" ("totalScore", "valuation", "valuationScore", "recommendation", "readability", "readabilityScore", "paceScore", "complexityScore", "structure", "structureScore", "trendingScore", "synopsis", "plotStructure", "createdAt", "updatedAt", "bookId") 
-values (80,'$45,000', 6,'Slightly Positive','Very Good',6,8,5,'Three-Acts',9,7,
-        'The story is set in the year of 1996. Ensei Tankado was a former NSA employee who became displeased with the NSA''s intrusion into people''s private lives. Tankado threatened to auction the code''s algorithm on his website if the NSA didn''t reveal his death. Strathmore kills Hale and arranges it to appear as a suicide. Becker manages to track down the ring, but ends up pursued by Hulohot in a long cat-and-mouse chase across Seville. Strathmore has been working incessantly for many months to unlock Digital Fortress. TRANSLTR is a computer worm that, once unlocked would "eat away" all the NSA databank''s security. Strathmore dies by standing next to the machine as it explodes.',
-        '{40,40,32,26,22,18,12,15,23,26,18,26,37,30,34,39,36,35,40,47,47,47,40,41,34,33,27,24,24,18,18,9,9,3,4,2,8,10,19,16,15,9,12,8,5,4,4,-3,-11,-18,-20,-21,-27,-19,-12,-13,-11,-13,-20,-8,-6,-10,-14,-13,-13,-12,-20,-25,-24,-30,-25,-22,-30,-25,-21,-29,-31,-35,-40,-42,-44,-37,-39,-40,-41,-36,-32,-26,-27,-24,-23,-22,-23,-32,-27,-19,-20,-23,-25,-10}',
-        NOW(),NOW(),5);
-
-insert into "Analytics" ("totalScore", "valuation", "valuationScore", "recommendation", "readability", "readabilityScore", "paceScore", "complexityScore", "structure", "structureScore", "trendingScore", "synopsis", "plotStructure", "createdAt", "updatedAt", "bookId") 
-values (70,'$40,000', 5,'Slightly Negative','Good',7,9,4,'Three-Acts',7,6,
-        'On the eve of a presidential election, NASA discovers an extraterrestrial meteorite in the Arctic. The discovery could potentially be a deciding factor in the presidential election. One of the key issues is whether to continue funding NASA; incumbent President Zachary Herney favors supporting space research. Ashe discovers that Tench''s claims are true, but also finds out that NASA lied about the origin of the meteorite. Rachel and Gabrielle swap photo evidence of Sexton''s affair with Gabrielle to humiliate him and ruin his chances of winning the election.',
-        '{25,32,26,24,24,22,25,26,25,30,31,31,34,41,46,48,48,49,44,43,42,38,36,30,25,23,18,16,18,13,10,1,-7,-5,-7,-12,-17,-16,-21,-19,-17,-13,-4,-6,-5,-3,5,5,6,4,3,4,5,1,-4,-3,-4,-5,-5,-6,-6,-11,-12,-9,-4,0,-1,2,4,5,10,12,13,15,14,16,17,15,12,10,-2,-7,-12,-19,-26,-35,-43,-49,-47,-46,-45,-48,-46,-43,-38,-32,-26,-22,-20,-14}',
-        NOW(),NOW(),6);
-
-insert into "Analytics" ("totalScore", "valuation", "valuationScore", "recommendation", "readability", "readabilityScore", "paceScore", "complexityScore", "structure", "structureScore", "trendingScore", "synopsis", "plotStructure", "createdAt", "updatedAt", "bookId") 
-values (75,'$45,000', 4,'Neutral','OK',5,7,7,'Milieu Story',5,6,
-        'A teenage boy wakes up inside an underground elevator with no memory of his identity. He is greeted by several male youths in a large grass area called the "Glade". The next day he is attacked by Ben, who has been stung and left delirious by a Griever. Minho and Thomas discover a possible exit from the Maze. That night, the Maze entrance does not close, and others open, allowing the Grievers to enter. Several Gladers free them and enter the Maze, but Gally and a few others refuse to leave.',
-        '{6,14,16,12,12,16,23,17,9,9,12,3,4,2,-7,-5,-11,-9,-10,-14,-24,-34,-29,-16,-20,-25,-36,-38,-41,-33,-44,-48,-48,-45,-44,-39,-27,-32,-39,-32,-29,-23,-16,-7,-4,11,19,25,29,38,45,39,41,40,40,39,40,39,37,32,33,25,19,4,-6,-5,-8,-5,7,15,17,21,13,14,16,5,6,13,19,27,21,26,27,19,7,5,1,-4,-12,-14,-16,-16,-22,-22,-29,-27,-27,-32,-30,-22}',
-        NOW(),NOW(),7);
-
-insert into "Analytics" ("totalScore", "valuation", "valuationScore", "recommendation", "readability", "readabilityScore", "paceScore", "complexityScore", "structure", "structureScore", "trendingScore", "synopsis", "plotStructure", "createdAt", "updatedAt", "bookId") 
-values (40,'$25,000', 3,'Negative','Not Good',4,3,4,'Milieu Story',6,2,
-        'The story follows the lives of five children raised by an organization called WICKED (World in Catastrophe Killzone Experiment Department). Killzone means the brain, the "kill zone" of the Flare. In the prologue, Stephen is introduced and has been renamed Thomas by his new-found friends. After learning that Minho is infected with the Flare, WICKED unleashes a Griever on him. Dr. Ava Paige orders Thomas, Teresa, Aris, and Rachel to kill other infected Gladers. It is revealed that Teresa was originally Deedee, who survived in the prequel The Kill Order. After the Maze Trials, Thomas hatches a thorough plan to escape WICKED. The book ends with him standing up in the Box with his memories gone, which set the events of the main series in motion.',
-        '{-10,-3,4,13,13,30,42,45,48,41,47,42,37,44,45,37,24,14,12,7,1,-5,-7,-9,1,4,0,3,-1,1,4,2,6,5,4,13,19,19,22,13,12,7,5,6,-2,-5,10,22,28,29,21,15,-3,-14,-17,-14,-22,-22,-26,-24,-19,-30,-35,-36,-42,-40,-38,-35,-26,-25,-29,-43,-47,-49,-48,-40,-29,-31,-35,-25,-27,-23,-21,-23,-31,-26,-19,2,13,22,10,1,12,2,-13,-11,-13,-21,-24}',        
-        NOW(),NOW(),8);
-
-insert into "Analytics" ("totalScore", "valuation", "valuationScore", "recommendation", "readability", "readabilityScore", "paceScore", "complexityScore", "structure", "structureScore", "trendingScore", "synopsis", "plotStructure", "createdAt", "updatedAt", "bookId") 
-values (25,'$10,000', 2,'Strong Negative','Not Good',2,5,3,'Character',3,2,
-        'Cas Russell discovers her past was deliberately erased and her abilities deliberately created. When a demolitions expert targets Cas and her friends, a hidden conspiracy behind her past starts to reappear. The past, present, and future collide in a race to save one of her dearest friends.',
-        '{14,0,-8,0,10,20,16,9,10,5,7,3,0,-1,24,34,29,37,31,30,30,37,48,47,46,40,39,36,28,30,26,23,29,29,14,6,-3,-2,-10,-19,-27,-24,-30,-21,-20,-18,-18,-13,-5,-7,3,14,21,19,14,20,6,3,-12,-15,-16,-11,-11,-10,-22,-38,-44,-46,-45,-45,-43,-30,-35,-32,-30,-21,-21,-25,-7,2,16,16,10,21,16,25,29,15,9,-7,-1,1,12,18,17,25,25,23,21,40}',        
-        NOW(),NOW(),9);
-
-insert into "Analytics" ("totalScore", "valuation", "valuationScore", "recommendation", "readability", "readabilityScore", "paceScore", "complexityScore", "structure", "structureScore", "trendingScore", "synopsis", "plotStructure", "createdAt", "updatedAt", "bookId") 
-values (35,'$20,000', 1,'Negative','Not Good',3,1,6,'Three-Acts',3,3,
-        'After a lifetime of neglect, Sophie is disowned by her mother. Where is she to go in London? She finds new friends and is reunited with her brother, the Earl of Nethercote. She also falls in love - but at heart she is still Silly Sophie.',
-        '{-22,-23,-18,-23,-22,-10,-11,-11,-8,6,10,4,5,11,11,17,12,4,-2,-3,-6,-6,-5,-2,-11,-22,-16,-18,-17,-15,-17,-10,-9,-8,-8,-18,-11,-3,5,8,12,16,11,13,20,17,11,5,7,1,9,3,8,2,4,20,15,22,22,19,24,24,32,34,30,39,43,47,49,41,31,25,25,30,34,27,30,19,19,13,11,6,-9,-21,-17,-25,-25,-22,-24,-18,-19,-19,-28,-30,-40,-49,-47,-31,-23}',        
-        NOW(),NOW(),10);
-        
-        
- 
--- set uploaded
-update "Book"
-set "uploaded" = false
-
--- sanity
-select * from "Agency";
-select * from "Author";
-select * from "Book";
-select * from "Analytics"
-
-
-
-
-
-select * from "Author" au
-join "Agency" ag on "au"."agencyId" = "ag"."id" 
-
-select * from "Book" b
-join "Analytics" a on "a"."bookId" = "b"."id"
-
-update "Book" 
-set "uploaded" = false
-where "id" = 3
-
-update "Book" 
-set "uploaded" = true
-where "title" = 'Angels & Demons - Dan Brown'
-
-update "Book" 
-set "uploaded" = true
-where "title" = 'The Martian'
-
-
-
-select * from "Book" where "uploaded" = true
-
-select * from "Book" where "title" = 'The Martain'
-
-select "title" from "Book" where "id" = 1
-
-
-
-
-
+-- ArchtypesAnalysis
+insert into "ArchtypeAnalysis" ("class", "plotStructure", "createdAt", "updatedAt") values ('Man In the Hole', '{40,39,39,39,38,37,36,35,34,33,32,31,29,27,25,23,20,18,16,13,11,9,7,5,2,0,-2,-4,-7,-9,-12,-14,-16,-18,-20,-22,-24,-27,-29,-31,-32,-34,-35,-36,-36,-37,-37,-38,-38,-38,-39,-39,-40,-39,-38,-37,-37,-36,-35,-34,-32,-30,-29,-27,-25,-23,-22,-20,-18,-15,-13,-11,-9,-6,-4,-1,1,4,7,10,12,14,17,19,21,23,25,27,28,30,32,33,34,35,36,37,37,38,38,39}', NOW(), NOW());
+insert into "ArchtypeAnalysis" ("class", "plotStructure", "createdAt", "updatedAt") values ('Emergence', '{-44,-43,-42,-41,-40,-38,-37,-35,-34,-32,-30,-27,-25,-23,-20,-18,-16,-14,-12,-10,-8,-6,-4,-2,0,1,3,4,4,5,6,6,6,6,6,6,5,5,4,3,2,1,0,-1,-3,-4,-5,-6,-7,-8,-10,-11,-12,-13,-14,-14,-15,-15,-15,-15,-15,-15,-15,-15,-14,-12,-11,-10,-8,-7,-5,-4,-2,-1,1,3,5,7,10,13,15,17,18,20,22,24,26,28,30,31,33,34,35,36,37,38,38,39,39,40}', NOW(), NOW());
+insert into "ArchtypeAnalysis" ("class", "plotStructure", "createdAt", "updatedAt") values ('The Quest', '{-7,-7,-6,-5,-4,-2,0,2,4,7,9,12,14,17,20,22,25,27,30,32,34,35,37,39,39,40,41,41,41,40,39,39,37,36,34,33,31,29,27,25,23,21,20,18,17,15,14,13,13,12,11,11,12,12,12,13,13,15,16,17,18,19,21,22,23,23,24,25,25,26,26,26,25,25,23,22,21,19,16,14,11,9,6,2,-1,-5,-8,-12,-15,-18,-21,-25,-27,-30,-32,-34,-36,-38,-39,-40}', NOW(), NOW());
+insert into "ArchtypeAnalysis" ("class", "plotStructure", "createdAt", "updatedAt") values ('Rags to Riches', '{-13,-14,-14,-13,-12,-11,-9,-8,-6,-4,-2,1,3,5,8,11,14,16,19,21,24,26,29,31,33,35,36,37,38,40,40,40,40,40,40,39,38,36,35,33,31,28,26,23,20,17,14,10,7,4,0,-3,-7,-10,-13,-16,-19,-23,-25,-28,-30,-32,-34,-36,-38,-39,-40,-41,-41,-41,-40,-40,-39,-38,-36,-35,-34,-32,-30,-27,-25,-23,-20,-18,-15,-13,-10,-7,-4,-2,1,3,5,7,8,10,11,12,13,14}', NOW(), NOW());
+insert into "ArchtypeAnalysis" ("class", "plotStructure", "createdAt", "updatedAt") values ('Voyage and Return', '{21,20,20,18,16,14,11,8,5,2,-2,-6,-9,-13,-17,-20,-23,-26,-29,-31,-33,-35,-36,-37,-37,-36,-36,-35,-33,-32,-30,-27,-24,-21,-17,-14,-10,-6,-3,1,4,8,11,14,16,18,20,21,22,23,22,22,21,19,17,15,12,9,6,2,-2,-6,-10,-14,-19,-23,-26,-29,-32,-34,-37,-39,-39,-40,-41,-40,-40,-38,-37,-35,-32,-29,-25,-21,-17,-13,-8,-3,2,7,12,17,21,25,29,32,35,37,39,41}', NOW(), NOW());
+insert into "ArchtypeAnalysis" ("class", "plotStructure", "createdAt", "updatedAt") values ('Rise and Fall', '{13,13,12,10,9,7,5,2,0,-3,-5,-8,-11,-14,-16,-19,-21,-23,-26,-28,-29,-31,-32,-32,-33,-33,-33,-32,-32,-30,-29,-27,-25,-22,-20,-17,-14,-11,-7,-4,0,4,7,11,14,18,21,24,27,30,31,33,35,37,38,39,40,40,40,39,39,37,36,34,32,30,28,26,23,20,17,14,11,8,5,2,-1,-4,-7,-10,-13,-16,-19,-21,-24,-25,-27,-29,-31,-33,-34,-36,-37,-38,-39,-39,-40,-40,-41,-41}', NOW(), NOW());
+insert into "ArchtypeAnalysis" ("class", "plotStructure", "createdAt", "updatedAt") values ('Descent', '{41,41,41,41,40,40,39,39,38,38,37,35,34,33,32,30,29,28,27,25,24,22,21,19,18,16,15,13,11,10,8,6,5,3,2,1,0,-2,-3,-3,-4,-5,-6,-6,-7,-7,-8,-8,-8,-8,-8,-8,-8,-8,-7,-7,-7,-7,-6,-6,-6,-6,-6,-6,-5,-5,-6,-6,-7,-7,-7,-8,-9,-10,-10,-11,-12,-14,-15,-17,-18,-20,-21,-23,-24,-26,-27,-29,-30,-32,-33,-34,-35,-36,-37,-38,-39,-40,-40,-40}', NOW(), NOW());
