@@ -4,6 +4,7 @@ import prisma from '../lib/prisma';
 import { getSession } from '@auth0/nextjs-auth0';
 import Loader from '../components/Loader';
 import Upload from '../components/Upload';
+import { dialogClasses } from '@mui/material';
 
 const Manuscripts = ({ manuscripts }: { manuscripts: any }) => {
   const router = useRouter();
@@ -13,7 +14,12 @@ const Manuscripts = ({ manuscripts }: { manuscripts: any }) => {
   }
 
   if (manuscripts.length === 1) {
-    return <Loader />;
+    return (
+      <div>
+        <div>In Manuscript length == 1</div>
+        <Loader />
+      </div>
+    );
   }
 
   if (manuscripts.length > 1) {
