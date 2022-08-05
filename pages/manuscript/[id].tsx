@@ -358,45 +358,45 @@ export async function getServerSideProps(params: any) {
   const similarBooksList = JSON.parse(JSON.stringify(similarBooksOptions));
 
   // according to the manuscript, get best seller compare options
-  // const bestSellerListObj = await prisma.bestSellerListAnalysis.findUnique({
-  //   where: {
-  //     genre: manuscript.genre,
-  //   },
-  // });
+  const bestSellerListObj = await prisma.bestSellerListAnalysis.findMany({
+    where: {
+      genre: manuscript.genre,
+    },
+  });
 
-  // const bestSellerListOptions = bestSellerListObj.map((obj) => {
-  //   return {
-  //     title: `${obj.name} - ${obj.genre}`,
-  //     plotStructure: obj.plotStructure,
-  //   };
-  // });
+  const bestSellerListOptions = bestSellerListObj.map((obj) => {
+    return {
+      title: `${obj.name} - ${obj.genre}`,
+      plotStructure: obj.plotStructure,
+    };
+  });
 
-  const bestSellerListOptions = [];
-  if (manuscript.genre === 'Thriller') {
-    bestSellerListOptions.push({
-      title: 'New York Bestsellers - Thriller',
-      plotStructure: [
-        8, 4, -2, -8, -16, -23, -30, -35, -40, -42, -43, -41, -38, -33, -26,
-        -19, -12, -5, 2, 8, 11, 15, 16, 15, 13, 10, 6, 2, -2, -5, -7, -9, -9,
-        -8, -5, -1, 3, 7, 12, 17, 23, 27, 31, 34, 35, 35, 34, 32, 30, 27, 25,
-        22, 20, 18, 16, 15, 14, 14, 14, 15, 16, 16, 17, 17, 18, 18, 19, 18, 18,
-        18, 17, 16, 14, 13, 12, 10, 8, 6, 4, 2, 0, -1, -3, -5, -5, -5, -4, -2,
-        0, 2, 6, 10, 14, 18, 22, 26, 29, 32, 34, 35,
-      ],
-    });
-  } else {
-    bestSellerListOptions.push({
-      title: 'New York Bestsellers - Sci-fi',
-      plotStructure: [
-        8, 10, 13, 17, 21, 26, 31, 35, 37, 39, 38, 37, 34, 30, 26, 21, 17, 13,
-        9, 7, 6, 6, 6, 7, 8, 9, 9, 10, 9, 9, 8, 7, 6, 6, 5, 6, 7, 9, 11, 14, 16,
-        18, 19, 19, 18, 16, 11, 5, -2, -9, -17, -25, -31, -36, -40, -43, -43,
-        -42, -39, -36, -32, -28, -24, -20, -18, -18, -19, -20, -23, -26, -30,
-        -33, -36, -38, -39, -39, -39, -39, -38, -37, -36, -36, -36, -36, -37,
-        -38, -39, -39, -38, -37, -35, -30, -24, -17, -9, -1, 6, 12, 17, 21,
-      ],
-    });
-  }
+  // const bestSellerListOptions = [];
+  // if (manuscript.genre === 'Thriller') {
+  //   bestSellerListOptions.push({
+  //     title: 'New York Bestsellers - Thriller',
+  //     plotStructure: [
+  //       8, 4, -2, -8, -16, -23, -30, -35, -40, -42, -43, -41, -38, -33, -26,
+  //       -19, -12, -5, 2, 8, 11, 15, 16, 15, 13, 10, 6, 2, -2, -5, -7, -9, -9,
+  //       -8, -5, -1, 3, 7, 12, 17, 23, 27, 31, 34, 35, 35, 34, 32, 30, 27, 25,
+  //       22, 20, 18, 16, 15, 14, 14, 14, 15, 16, 16, 17, 17, 18, 18, 19, 18, 18,
+  //       18, 17, 16, 14, 13, 12, 10, 8, 6, 4, 2, 0, -1, -3, -5, -5, -5, -4, -2,
+  //       0, 2, 6, 10, 14, 18, 22, 26, 29, 32, 34, 35,
+  //     ],
+  //   });
+  // } else {
+  //   bestSellerListOptions.push({
+  //     title: 'New York Bestsellers - Sci-fi',
+  //     plotStructure: [
+  //       8, 10, 13, 17, 21, 26, 31, 35, 37, 39, 38, 37, 34, 30, 26, 21, 17, 13,
+  //       9, 7, 6, 6, 6, 7, 8, 9, 9, 10, 9, 9, 8, 7, 6, 6, 5, 6, 7, 9, 11, 14, 16,
+  //       18, 19, 19, 18, 16, 11, 5, -2, -9, -17, -25, -31, -36, -40, -43, -43,
+  //       -42, -39, -36, -32, -28, -24, -20, -18, -18, -19, -20, -23, -26, -30,
+  //       -33, -36, -38, -39, -39, -39, -39, -38, -37, -36, -36, -36, -36, -37,
+  //       -38, -39, -39, -38, -37, -35, -30, -24, -17, -9, -1, 6, 12, 17, 21,
+  //     ],
+  //   });
+  // }
 
   const bestSellerList = JSON.parse(JSON.stringify(bestSellerListOptions));
 
