@@ -14,6 +14,7 @@ const Upload = () => {
   const [isLoading, setIsLoading] = useState(false);
 
   const handleOnChange = async (e: any) => {
+    e.preventDefault();
     console.log(e.target.files);
     setIsLoading(true);
     const files = [...e.target.files].map(
@@ -30,6 +31,7 @@ const Upload = () => {
     });
     if (await response.json()) {
       //setIsLoading(false);
+      console.log('in response');
       router.push('/manuscripts');
     }
   };
