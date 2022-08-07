@@ -22,6 +22,7 @@ import PieChartOutlineIcon from '@mui/icons-material/PieChartOutline';
 import SubjectIcon from '@mui/icons-material/Subject';
 import SearchOutlinedIcon from '@mui/icons-material/SearchOutlined';
 import AddCircleOutlineOutlinedIcon from '@mui/icons-material/AddCircleOutlineOutlined';
+import ArrowDropDownIcon from '@mui/icons-material/ArrowDropDown';
 import ClearOutlinedIcon from '@mui/icons-material/ClearOutlined';
 
 import styles from './[id].module.css';
@@ -180,10 +181,19 @@ const Manuscript = ({
         </Box>
       </Box>
       <Box sx={{ mt: 3 }} className={styles.title}>
+        <Box sx={{ ml: { xs: 5, lg: 20 } }} className={styles.manuscriptSelect}>
+          <Typography className={styles.manuscriptName}>
+            {manuscript.title}
+          </Typography>
+        </Box>
         <Box className={styles.compareSelect}>
           {compareOption ? (
-            <Box sx={{ ml: { xs: 5, ml: 20 } }} className={styles.compareClear}>
-              <Typography className={styles.compareSelectedOption}>
+            <Box sx={{ ml: 2 }} className={styles.compareClear}>
+              <Typography color="secondary">Compare to</Typography>
+              <Typography
+                sx={{ ml: 2 }}
+                className={styles.compareSelectedOption}
+              >
                 {compareOption.title}
               </Typography>
               <IconButton sx={{ color: 'red' }} onClick={handleClearCompare}>
@@ -192,20 +202,16 @@ const Manuscript = ({
             </Box>
           ) : (
             <Button
-              sx={{ ml: { xs: 5, xl: 20 }, color: '#000', borderColor: '#000' }}
-              variant="outlined"
+              sx={{ ml: 2 }}
+              variant="text"
               size="large"
-              startIcon={<AddCircleOutlineOutlinedIcon />}
+              color="secondary"
+              endIcon={<ArrowDropDownIcon />}
               onClick={handleClickCompare}
             >
               Compare
             </Button>
           )}
-        </Box>
-        <Box className={styles.manuscriptSelect}>
-          <Typography className={styles.manuscriptName}>
-            {manuscript.title}
-          </Typography>
         </Box>
         <Box className={styles.right}></Box>
       </Box>
