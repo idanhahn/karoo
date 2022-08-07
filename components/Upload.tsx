@@ -29,11 +29,11 @@ const Upload = () => {
       method: 'POST',
       body: JSON.stringify(reqBody),
     });
-    if (await response.json()) {
-      //setIsLoading(false);
-      console.log('in response');
-      router.push('/manuscripts');
-    }
+    const resJson = await response.json();
+    //setIsLoading(false);
+    console.log('in response');
+    console.log(resJson);
+    router.push(`/manuscript/${resJson.manuscriptId}`);
   };
 
   const handleOnDragOver = (e: any) => {

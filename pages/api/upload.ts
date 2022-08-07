@@ -16,7 +16,7 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
 
   try {
     const body: any = JSON.parse(req.body);
-    const manuscriptTitles: any = body.files;
+    const manuscriptTitle: any = body.files[0];
     const userEmail: any = body.userEmail;
 
     const user = await prisma.user.findUnique({
@@ -25,21 +25,31 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
       },
     });
 
-    manuscriptTitles.forEach(async (manuscriptTitle: any) => {
-      const updatedManuscript = await prisma.manuscript.updateMany({
-        where: {
-          title: manuscriptTitle,
-          userId: user?.id,
-        },
-        data: {
-          active: true,
-        },
-      });
+    const updatedManuscripts = await prisma.manuscript.updateMany({
+      where: {
+        userId: user?.id,
+        title: manuscriptTitle,
+      },
+      data: {
+        active: true,
+      },
     });
+
+    const modifiedManuscript = await prisma.manuscript.findMany({
+      where: {
+        userId: user?.id,
+        title: manuscriptTitle,
+      },
+    });
+
+    // make sure only one was updated
+    if (modifiedManuscript.length > 1) {
+      throw 'Only 1 manuscript allow';
+    }
 
     //await delay(2000);
 
-    res.status(200).json({ success: true });
+    res.status(200).json({ manuscriptId: modifiedManuscript[0].id });
   } catch (err) {
     console.log(err);
     res.status(400).json({ message: 'Something went wrong' });
