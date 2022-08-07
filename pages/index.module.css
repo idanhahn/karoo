@@ -38,15 +38,15 @@
 
 .loginText {
   color: #ffffff;
-  font-size: 48px;
+  font-size: 3rem;
 }
 
 .signupTitle {
-  font-size: 32px;
+  font-size: 2rem;
 }
 
 .signupText {
-  font-size: 20px;
+  font-size: 1.25rem;
 }
 
 .linkHighlight {
