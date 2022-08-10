@@ -100,6 +100,29 @@ const tabs = [
   },
 ];
 
+const marks = [
+  {
+    value: 0,
+    label: '0%',
+  },
+  {
+    value: 25,
+    label: '25%',
+  },
+  {
+    value: 50,
+    label: '50%',
+  },
+  {
+    value: 75,
+    label: '75%',
+  },
+  {
+    value: 100,
+    label: '100%',
+  },
+];
+
 const Manuscript = ({
   manuscript,
   compareOptions,
@@ -211,40 +234,17 @@ const Manuscript = ({
       </Box>
 
       <Box sx={{ mt: 6 }} className={styles.chartSection}>
-        {/* {tabs.map((tab: any) => (
-          <AnalysisTabContent
-            id={tab.id}
-            title={tab.title}
-            activeTab={activeTab}
-          >
-            {tab.component(manuscript.id, compareOption)}
-          </AnalysisTabContent>
-        ))} */}
         {activeTab === 0 ? (
           <PlotStructure
             data={manuscript.analysis.plotStructure}
-            compareTo={compareOptions}
-            handleSliderChange={handleSliderChange}
+            compareTo={compareOption}
           />
         ) : null}
 
         {activeTab === 1 ? (
-          <Beats
-            data={manuscriptAnalysis.beats}
-            compareTo={compareOptions}
-            handleSliderChange={handleSliderChange}
-          />
-        )}
+          <Beats data={manuscript.analysis.beats} compareTo={compareOption} />
+        ) : null}
 
-        {/* <Typography className={styles.analysisName}>
-          Plot Structure Analysis
-        </Typography>
-        <Box className={styles.graph}>
-          <PlotStructureChart
-            data={manuscript.analysis.beats}
-            compareOption={compareOption}
-          />
-        </Box>
         <Box sx={{ ml: 4 }} width={700}>
           <Slider
             sx={{
@@ -256,7 +256,7 @@ const Manuscript = ({
             onChange={handleSliderChange}
             marks={marks}
           />
-        </Box> */}
+        </Box>
       </Box>
       <Box sx={{ mt: 6, mr: 2, mb: 4 }} className={styles.manuscript}>
         <Box className={styles.manuscriptSection}>
@@ -379,6 +379,7 @@ export async function getServerSideProps(params: any) {
       title: obj.title,
       author: obj.author,
       plotStructure: obj.analysis?.plotStructure,
+      beats: obj.analysis?.beats,
     };
   });
   const similarBooksList = JSON.parse(JSON.stringify(similarBooksOptions));
@@ -394,6 +395,7 @@ export async function getServerSideProps(params: any) {
     return {
       title: `${obj.name} - ${obj.genre}`,
       plotStructure: obj.plotStructure,
+      beats: obj.beats,
     };
   });
 

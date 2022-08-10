@@ -49,11 +49,6 @@
   flex: 1;
 }
 
-.analysisName {
-  font-size: 28px;
-  font-weight: semibold;
-}
-
 .manuscriptInfo {
   grid-area: manuscriptInfo;
   display: flex;

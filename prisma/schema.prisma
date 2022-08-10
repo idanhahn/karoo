@@ -64,6 +64,7 @@ model Book {
 model BookAnalysis {
   id            Int      @id @default(autoincrement())
   plotStructure Int[]
+  beats         Int[]
   createdAt     DateTime @default(now())
   updatedAt     DateTime @default(now())
   book          Book     @relation(fields: [bookId], references: [id])
@@ -78,6 +79,7 @@ model BestSellerListAnalysis {
   genre         String
   to            DateTime   @default(now())
   plotStructure Int[]
+  beats         Int[]
   createdAt     DateTime   @default(now())
   updatedAt     DateTime   @default(now())
 }
@@ -86,6 +88,7 @@ model ArchtypeAnalysis {
   id            Int        @id @default(autoincrement())
   class         String
   plotStructure Int[]
+  beats         Int[]
   createdAt     DateTime   @default(now())
   updatedAt     DateTime   @default(now())
 }
