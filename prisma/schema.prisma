@@ -36,6 +36,7 @@ model Manuscript {
 model ManuscriptAnalysis {
   id            Int        @id @default(autoincrement())
   plotStructure Int[]
+  beats         Int[]
   createdAt     DateTime   @default(now())
   updatedAt     DateTime   @default(now())
   manuscript    Manuscript @relation(fields: [manuscriptId], references: [id])

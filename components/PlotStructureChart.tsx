@@ -24,11 +24,11 @@ ChartJS.register(
 import styles from './PlotStructureChart.module.css';
 
 const PlotStructureChart = ({
-  plotData,
-  compareOption,
+  baseData,
+  compareTo,
 }: {
-  plotData: number[];
-  compareOption: any;
+  baseData: number[];
+  compareTo: any;
 }) => {
   const labels = [
     1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21,
@@ -39,22 +39,20 @@ const PlotStructureChart = ({
     98, 99, 100,
   ];
 
-  const dataPoints = plotData;
-
   const data = {
     labels: labels,
     datasets: [
       {
         label: 'My Menuscript',
-        data: dataPoints,
+        data: baseData,
         borderColor: '#E27D60',
         pointRadius: 0,
         borderWidth: 3,
         tension: 0.6,
       },
       {
-        label: compareOption?.title,
-        data: compareOption?.plotStructure,
+        label: compareTo?.title,
+        data: compareTo?.plotStructure,
         borderColor: '#41B3A3',
         pointRadius: 0,
         borderWidth: 3,
@@ -109,7 +107,7 @@ const PlotStructureChart = ({
         text: 'Plot Structure Analysis',
       },
       legend: {
-        display: compareOption ? true : false,
+        display: compareTo ? true : false,
       },
     },
   };

@@ -31,6 +31,10 @@ import prisma from '../../lib/prisma';
 
 import manuscriptContent1 from '../../assets/sample_manuscripts/manuscript1';
 import manuscriptContent2 from '../../assets/sample_manuscripts/manuscript2';
+import TabSideNavItem from '../../components/TabSideNavItem';
+import AnalysisTabContent from '../../components/AnalysisTabContent';
+import PlotStructure from '../../components/PlotStructure';
+import Beats from '../../components/Beats';
 // import manuscriptContent3 from '../../assets/sample_manuscripts/manuscript3';
 // import manuscriptContent4 from '../../assets/sample_manuscripts/manuscript4';
 // import manuscriptContent5 from '../../assets/sample_manuscripts/manuscript5';
@@ -53,26 +57,46 @@ const manuscripts: any = {
   // 10: manuscriptContent10.content,
 };
 
-const marks = [
+const tabs = [
   {
-    value: 0,
-    label: '0%',
+    id: 0,
+    title: 'Plot Structure',
+    icon: <TimelineIcon />,
   },
   {
-    value: 25,
-    label: '25%',
+    id: 1,
+    title: 'Plot Beats',
+    icon: <GraphicEqIcon />,
   },
   {
-    value: 50,
-    label: '50%',
+    id: 2,
+    title: 'Pace',
+    icon: <SpeedIcon />,
   },
   {
-    value: 75,
-    label: '75%',
+    id: 3,
+    title: 'Narrative Vs Dialog',
+    icon: <GraphicEqIcon />,
   },
   {
-    value: 100,
-    label: '100%',
+    id: 4,
+    title: 'Emotion Classification',
+    icon: <GraphicEqIcon />,
+  },
+  {
+    id: 5,
+    title: 'Characters',
+    icon: <GroupsOutlinedIcon />,
+  },
+  {
+    id: 6,
+    title: 'Subjects',
+    icon: <SubjectIcon />,
+  },
+  {
+    id: 7,
+    title: 'Explicit Content',
+    icon: <PieChartOutlineIcon />,
   },
 ];
 
@@ -83,6 +107,8 @@ const Manuscript = ({
   manuscript: any;
   compareOptions: any;
 }) => {
+  const [activeTab, setActiveTab] = useState<any>(0);
+
   const [compareOption, setCompareOption] = useState<any>(null);
 
   const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
@@ -137,48 +163,16 @@ const Manuscript = ({
   return (
     <Box className={styles.container}>
       <Box className={styles.sidebar}>
-        <Box className={styles.sidebarItem}>
-          <Tooltip title="Plot Structure" placement="right">
-            <IconButton>
-              <TimelineIcon />
-            </IconButton>
-          </Tooltip>
-        </Box>
-        <Box className={styles.sidebarItem}>
-          <Tooltip title="Plot Turns" placement="right">
-            <IconButton>
-              <GraphicEqIcon />
-            </IconButton>
-          </Tooltip>
-        </Box>
-        <Box className={styles.sidebarItem}>
-          <Tooltip title="Pace" placement="right">
-            <IconButton>
-              <SpeedIcon />
-            </IconButton>
-          </Tooltip>
-        </Box>
-        <Box className={styles.sidebarItem}>
-          <Tooltip title="Characters" placement="right">
-            <IconButton>
-              <GroupsOutlinedIcon />
-            </IconButton>
-          </Tooltip>
-        </Box>
-        <Box className={styles.sidebarItem}>
-          <Tooltip title="Subjects" placement="right">
-            <IconButton>
-              <PieChartOutlineIcon />
-            </IconButton>
-          </Tooltip>
-        </Box>
-        <Box className={styles.sidebarItem}>
-          <Tooltip title="Explicit Content" placement="right">
-            <IconButton>
-              <SubjectIcon />
-            </IconButton>
-          </Tooltip>
-        </Box>
+        {tabs.map((tab: any) => (
+          <TabSideNavItem
+            key={tab.id}
+            id={tab.id}
+            title={tab.title}
+            icon={tab.icon}
+            activeTab={activeTab}
+            setActiveTab={setActiveTab}
+          />
+        ))}
       </Box>
       <Box sx={{ mt: 3 }} className={styles.title}>
         <Box sx={{ ml: { xs: 5, lg: 20 } }} className={styles.manuscriptSelect}>
@@ -215,13 +209,39 @@ const Manuscript = ({
         </Box>
         <Box className={styles.right}></Box>
       </Box>
+
       <Box sx={{ mt: 6 }} className={styles.chartSection}>
-        <Typography className={styles.analysisName}>
+        {/* {tabs.map((tab: any) => (
+          <AnalysisTabContent
+            id={tab.id}
+            title={tab.title}
+            activeTab={activeTab}
+          >
+            {tab.component(manuscript.id, compareOption)}
+          </AnalysisTabContent>
+        ))} */}
+        {activeTab === 0 ? (
+          <PlotStructure
+            data={manuscript.analysis.plotStructure}
+            compareTo={compareOptions}
+            handleSliderChange={handleSliderChange}
+          />
+        ) : null}
+
+        {activeTab === 1 ? (
+          <Beats
+            data={manuscriptAnalysis.beats}
+            compareTo={compareOptions}
+            handleSliderChange={handleSliderChange}
+          />
+        )}
+
+        {/* <Typography className={styles.analysisName}>
           Plot Structure Analysis
         </Typography>
         <Box className={styles.graph}>
           <PlotStructureChart
-            plotData={manuscript.analysis.plotStructure}
+            data={manuscript.analysis.beats}
             compareOption={compareOption}
           />
         </Box>
@@ -236,7 +256,7 @@ const Manuscript = ({
             onChange={handleSliderChange}
             marks={marks}
           />
-        </Box>
+        </Box> */}
       </Box>
       <Box sx={{ mt: 6, mr: 2, mb: 4 }} className={styles.manuscript}>
         <Box className={styles.manuscriptSection}>
