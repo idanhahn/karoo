@@ -35,6 +35,7 @@ import TabSideNavItem from '../../components/TabSideNavItem';
 import AnalysisTabContent from '../../components/AnalysisTabContent';
 import PlotStructure from '../../components/PlotStructure';
 import Beats from '../../components/Beats';
+import Pace from '../../components/Pace';
 // import manuscriptContent3 from '../../assets/sample_manuscripts/manuscript3';
 // import manuscriptContent4 from '../../assets/sample_manuscripts/manuscript4';
 // import manuscriptContent5 from '../../assets/sample_manuscripts/manuscript5';
@@ -243,6 +244,10 @@ const Manuscript = ({
 
         {activeTab === 1 ? (
           <Beats data={manuscript.analysis.beats} compareTo={compareOption} />
+        ) : null}
+
+        {activeTab === 2 ? (
+          <Pace data={manuscript.analysis.pace} compareTo={compareOption} />
         ) : null}
 
         <Box sx={{ ml: 4 }} width={700}>

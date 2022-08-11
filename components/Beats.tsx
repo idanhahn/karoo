@@ -1,5 +1,5 @@
 import React from 'react';
-import { Box, Slider, Typography } from '@mui/material';
+import { Box, Typography } from '@mui/material';
 
 import styles from './Beats.module.css';
 import BeatsChart from './BeatsChart';
