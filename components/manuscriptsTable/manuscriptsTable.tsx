@@ -8,12 +8,12 @@ import TableContainer from '@mui/material/TableContainer';
 import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
 import React, { useState } from 'react';
-import BriefReport from '../components/BriefReport';
+import BriefReport from './BriefReport';
 import TrendingUpIcon from '@mui/icons-material/TrendingUp';
 import TrendingDownIcon from '@mui/icons-material/TrendingDown';
 
 import styles from './manuscriptsTable.module.css';
-import prisma from '../lib/prisma';
+import prisma from '../../lib/prisma';
 import { Container, Fade } from '@mui/material';
 
 const score = 95;

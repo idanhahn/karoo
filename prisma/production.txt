@@ -1,0 +1,19 @@
+List all tables:
+----------------
+SELECT table_name
+FROM information_schema.tables
+WHERE table_schema = 'public'
+ORDER BY table_name;
+
+Drop all tables:
+----------------
+select 'drop table if exists "' || tablename || '" cascade;' 
+  from pg_tables
+  where schemaname = 'public';
+
+Push DB (move .env to production db)
+------------------------------------
+npx prisma db Push
+
+*Load db from seed
+

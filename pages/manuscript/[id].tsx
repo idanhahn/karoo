@@ -26,16 +26,14 @@ import ArrowDropDownIcon from '@mui/icons-material/ArrowDropDown';
 import ClearOutlinedIcon from '@mui/icons-material/ClearOutlined';
 
 import styles from './[id].module.css';
-import PlotStructureChart from '../../components/PlotStructureChart';
 import prisma from '../../lib/prisma';
 
 import manuscriptContent1 from '../../assets/sample_manuscripts/manuscript1';
 import manuscriptContent2 from '../../assets/sample_manuscripts/manuscript2';
 import TabSideNavItem from '../../components/TabSideNavItem';
-import AnalysisTabContent from '../../components/AnalysisTabContent';
-import PlotStructure from '../../components/PlotStructure';
-import Beats from '../../components/Beats';
-import Pace from '../../components/Pace';
+import PlotStructure from '../../components/analysisTabs/PlotStructure';
+import Beats from '../../components/analysisTabs/Beats';
+import Pace from '../../components/analysisTabs/Pace';
 // import manuscriptContent3 from '../../assets/sample_manuscripts/manuscript3';
 // import manuscriptContent4 from '../../assets/sample_manuscripts/manuscript4';
 // import manuscriptContent5 from '../../assets/sample_manuscripts/manuscript5';
