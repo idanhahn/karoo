@@ -1,0 +1,58 @@
+.container {
+}
+
+.titleSection {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  padding-top: 20px;
+}
+
+.title {
+  font-size: 40px;
+  font-weight: semibold;
+}
+
+.filterSection {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  padding: 40px 10vw 0px 10vw;
+}
+
+.filterBox {
+  width: 100%;
+  box-shadow: 0px 4px 4px #888888;
+}
+
+.suggestion {
+  font-size: 20px;
+  font-weight: 500;
+  text-decoration: underline;
+}
+
+.AiHighlight {
+  color: #e27d60;
+}
+
+.row {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  padding-top: 20px;
+}
+
+.keywords {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+}
+
+.searchButton {
+  font-size: 16px;
+  font-weight: 600;
+}
