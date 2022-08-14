@@ -9,12 +9,14 @@ const TabSideNavItem = ({
   activeTab,
   setActiveTab,
   icon,
+  disabled,
 }: {
   id: number;
   title: string;
   activeTab: number;
   setActiveTab: any;
   icon: any;
+  disabled: boolean;
 }) => {
   const handleClick = () => {
     setActiveTab(id);
@@ -23,12 +25,15 @@ const TabSideNavItem = ({
   return (
     <Box className={styles.sidebarItem}>
       <Tooltip title={title} placement="right">
-        <IconButton
-          className={activeTab === id ? 'active' : ''}
-          onClick={handleClick}
-        >
-          {icon}
-        </IconButton>
+        <Box>
+          <IconButton
+            className={activeTab === id ? 'active' : ''}
+            onClick={handleClick}
+            disabled={disabled}
+          >
+            {icon}
+          </IconButton>
+        </Box>
       </Tooltip>
     </Box>
   );

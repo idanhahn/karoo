@@ -11,7 +11,7 @@ import { useRouter } from 'next/router';
 
 import styles from './TopBar.module.css';
 
-const pagess = ['Manuscripts', 'Research', 'Publish'];
+const pages = ['Manuscripts', 'Research', 'Publish'];
 
 const TopBar = () => {
   const router = useRouter();
@@ -38,10 +38,13 @@ const TopBar = () => {
           {user && (
             <>
               <Box sx={{ ml: 12, mr: 3 }} className={styles.menu}>
-                {pagess.map((page, index) => (
+                {pages.map((page, index) => (
                   <Link href={`/${page.toLowerCase()}`} key={index}>
                     <Box sx={{ mr: 5 }} className={styles.menuItem}>
-                      {router.pathname === '/' + page.toLowerCase() ? (
+                      {router.pathname === '/' + page.toLowerCase() ||
+                      page
+                        .toLowerCase()
+                        .includes(router.pathname.split('/')[1]) ? (
                         <Typography variant="h5" className={styles.active}>
                           {page}
                         </Typography>

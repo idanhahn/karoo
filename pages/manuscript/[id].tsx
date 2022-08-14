@@ -21,9 +21,10 @@ import GroupsOutlinedIcon from '@mui/icons-material/GroupsOutlined';
 import PieChartOutlineIcon from '@mui/icons-material/PieChartOutline';
 import SubjectIcon from '@mui/icons-material/Subject';
 import SearchOutlinedIcon from '@mui/icons-material/SearchOutlined';
-import AddCircleOutlineOutlinedIcon from '@mui/icons-material/AddCircleOutlineOutlined';
 import ArrowDropDownIcon from '@mui/icons-material/ArrowDropDown';
 import ClearOutlinedIcon from '@mui/icons-material/ClearOutlined';
+import AlignVerticalBottomOutlinedIcon from '@mui/icons-material/AlignVerticalBottomOutlined';
+import EmojiEmotionsOutlinedIcon from '@mui/icons-material/EmojiEmotionsOutlined';
 
 import styles from './[id].module.css';
 import prisma from '../../lib/prisma';
@@ -61,41 +62,49 @@ const tabs = [
     id: 0,
     title: 'Plot Structure',
     icon: <TimelineIcon />,
+    disabled: false,
   },
   {
     id: 1,
     title: 'Plot Beats',
     icon: <GraphicEqIcon />,
+    disabled: false,
   },
   {
     id: 2,
     title: 'Pace',
     icon: <SpeedIcon />,
+    disabled: false,
   },
   {
     id: 3,
     title: 'Narrative Vs Dialog',
-    icon: <GraphicEqIcon />,
+    icon: <AlignVerticalBottomOutlinedIcon />,
+    disabled: true,
   },
   {
     id: 4,
     title: 'Emotion Classification',
-    icon: <GraphicEqIcon />,
+    icon: <EmojiEmotionsOutlinedIcon />,
+    disabled: true,
   },
   {
     id: 5,
     title: 'Characters',
     icon: <GroupsOutlinedIcon />,
+    disabled: true,
   },
   {
     id: 6,
     title: 'Subjects',
     icon: <SubjectIcon />,
+    disabled: true,
   },
   {
     id: 7,
     title: 'Explicit Content',
     icon: <PieChartOutlineIcon />,
+    disabled: true,
   },
 ];
 
@@ -168,7 +177,7 @@ const Manuscript = ({
 
   const handleSliderChange = (e: any) => {
     if (pageRef.current) {
-      if (pageRef.current.scrollTop) {
+      if (pageRef.current.scrollTop !== null) {
         pageRef.current.scrollTop = getPagePosition(e.target.value);
       }
     }
@@ -191,6 +200,7 @@ const Manuscript = ({
             id={tab.id}
             title={tab.title}
             icon={tab.icon}
+            disabled={tab.disabled}
             activeTab={activeTab}
             setActiveTab={setActiveTab}
           />
