@@ -14,7 +14,7 @@ import {
 import TrendingUpIcon from '@mui/icons-material/TrendingUp';
 import TrendingDownIcon from '@mui/icons-material/TrendingDown';
 
-import styles from './booksTable.module.css';
+import styles from './BooksTable.module.css';
 import BriefReport from '../manuscriptsTable/BriefReport';
 
 const score = 95;
