@@ -75,7 +75,6 @@ model BookAnalysis {
 model BestSellerListAnalysis {
   id            Int        @id @default(autoincrement())
   name          String
-
   from          DateTime   @default(now())
   genre         String
   to            DateTime   @default(now())

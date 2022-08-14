@@ -1,27 +1,28 @@
-import Button from '@mui/material/Button';
-import Modal from '@mui/material/Modal';
-import Table from '@mui/material/Table';
-import TableBody from '@mui/material/TableBody';
-import TableCell from '@mui/material/TableCell';
-import TableContainer from '@mui/material/TableContainer';
-import TableHead from '@mui/material/TableHead';
-import TableRow from '@mui/material/TableRow';
 import React, { useState } from 'react';
-import BriefReport from './BriefReport';
+import {
+  Button,
+  Container,
+  Fade,
+  Modal,
+  Table,
+  TableBody,
+  TableCell,
+  TableContainer,
+  TableHead,
+  TableRow,
+} from '@mui/material';
 import TrendingUpIcon from '@mui/icons-material/TrendingUp';
 import TrendingDownIcon from '@mui/icons-material/TrendingDown';
 
-import styles from './manuscriptsTable.module.css';
-import { Container, Fade } from '@mui/material';
+import styles from './booksTable.module.css';
+import BriefReport from '../manuscriptsTable/BriefReport';
 
 const score = 95;
 
 const scoreStyle =
   score > 94 ? 'tableBody__scoreVeryHigh' : 'tableBody__scoreVeryLow';
 
-const bookPreview = 'book preview here';
-
-const Manuscripts = ({ books }: { books: any }) => {
+const BooksTable = ({ books }: { books: any }) => {
   const [open, setOpen] = useState(false);
   const [bookPreview, setBookPreview] = useState(null);
 
@@ -44,13 +45,13 @@ const Manuscripts = ({ books }: { books: any }) => {
                   Title
                 </TableCell>
                 <TableCell className={styles.headerCell}>Author Name</TableCell>
-                <TableCell align="center" className={styles.headerCell}>
-                  AI Score
+                <TableCell className={styles.headerCell}>
+                  Published Date
                 </TableCell>
                 <TableCell className={styles.headerCell}>Genre</TableCell>
-                <TableCell className={styles.headerCell}>Valuation</TableCell>
-                <TableCell className={styles.headerCell}>Readability</TableCell>
-                <TableCell className={styles.headerCell}>Structure</TableCell>
+                <TableCell className={styles.headerCell}>ISBN13</TableCell>
+                <TableCell className={styles.headerCell}>Keywords</TableCell>
+                <TableCell className={styles.headerCell}>Subjects</TableCell>
                 <TableCell
                   className={styles.headerCell}
                   sx={{ minWidth: '80px' }}
@@ -60,10 +61,8 @@ const Manuscripts = ({ books }: { books: any }) => {
             <TableBody>
               {books &&
                 books
-                  .filter((book: any) => book.uploaded)
                   .sort(
-                    (a: any, b: any) =>
-                      b.analytics.totalScore - a.analytics.totalScore
+                    (a: any, b: any) => b.publicationDate - a.publicationDate
                   )
                   .map((book: any) => {
                     return (
@@ -72,8 +71,8 @@ const Manuscripts = ({ books }: { books: any }) => {
                           {book.title}
                         </TableCell>
                         <TableCell className={styles.bodyAuthor}>
-                          <span>{book.author.name}</span>
-                          <span>
+                          <span>{book.author}</span>
+                          {/* <span>
                             {book.author.trending > 0 && (
                               <TrendingUpIcon
                                 sx={{ ml: 1, color: '#22BB33' }}
@@ -86,18 +85,15 @@ const Manuscripts = ({ books }: { books: any }) => {
                                 sx={{ ml: 1, color: '#BB2124' }}
                               />
                             )}
-                          </span>
+                          </span> */}
                         </TableCell>
-                        <TableCell
-                          align="center"
-                          className={`${styles.bodyScore} ${scoreStyle}`}
-                        >
-                          {book.analytics.totalScore}
+                        <TableCell className={`${styles.bodyScore}`}>
+                          {book.publicationDate}
                         </TableCell>
                         <TableCell>{book.genre}</TableCell>
-                        <TableCell>{book.analytics.valuation}</TableCell>
-                        <TableCell>{book.analytics.readability}</TableCell>
-                        <TableCell>{book.analytics.structure}</TableCell>
+                        <TableCell>{book.isbn13}</TableCell>
+                        <TableCell>{book.kewords}</TableCell>
+                        <TableCell>{book.subjects}</TableCell>
                         <TableCell>
                           <Button
                             variant="outlined"
@@ -123,20 +119,4 @@ const Manuscripts = ({ books }: { books: any }) => {
   );
 };
 
-export async function getServerSideProps() {
-  // const booksObj = await prisma.book.findMany({
-  //   include: {
-  //     author: {
-  //       include: {
-  //         agency: true,
-  //       },
-  //     },
-  //     analytics: true,
-  //   },
-  // });
-  // const books = JSON.parse(JSON.stringify(booksObj));
-  const booksTmp = {};
-  return { props: { booksTmp } };
-}
-
-export default Manuscripts;
+export default BooksTable;

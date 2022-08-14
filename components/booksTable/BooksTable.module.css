@@ -1,0 +1,39 @@
+.table {
+  width: 100%;
+}
+
+.header {
+  border-bottom: 3px solid #e27d60;
+}
+
+.headerCell {
+  color: #e27d60;
+}
+
+.headerTitle {
+  width: 200px;
+}
+
+.bodyTitle {
+  font-weight: 600;
+}
+
+.bodyAuthor {
+  color: #5bc0de;
+  text-decoration: underline;
+  cursor: pointer;
+  /*display: flex;
+  flex-direction: row;
+  align-items: center;*/
+}
+
+.bodyScore {
+  font-weight: 600;
+}
+
+.tableBody__scoreVeryHigh {
+  color: #024e1b;
+}
+.tableBody__scoreVeryLow {
+  color: #ffffff;
+}

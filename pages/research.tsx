@@ -1,3 +1,4 @@
+import React from 'react';
 import {
   Box,
   Button,
@@ -7,10 +8,13 @@ import {
   TextField,
   Typography,
 } from '@mui/material';
-import React from 'react';
+import { getSession } from '@auth0/nextjs-auth0';
+import prisma from '../lib/prisma';
 import { useForm } from 'react-hook-form';
 
 import styles from './research.module.css';
+import similarBooks from './api/similarBooks';
+import BooksTable from '../components/booksTable/BooksTable';
 
 const compareToOptions = [
   {
@@ -38,7 +42,7 @@ const Genre = [
   { value: 'all', name: 'All' },
 ];
 
-const Research = () => {
+const Research = ({ manuscript }: { manuscript: any }) => {
   const {
     register,
     handleSubmit,
@@ -52,7 +56,17 @@ const Research = () => {
       keywords: '',
     },
   });
-  const onSubmit = (data: any) => {
+  const onSubmit = async (data: any) => {
+    const reqBody = {
+      manuscriptId: manuscript.id,
+      filterOptions: data,
+    };
+
+    const response = await fetch('/api/similarBooks', {
+      method: 'POST',
+      body: JSON.stringify(reqBody),
+    });
+
     console.log(data);
   };
 
@@ -167,9 +181,44 @@ const Research = () => {
           </Box>
         </Box>
       </Box>
-      <Box className={styles.table}></Box>
+      <Box className={styles.table}>
+        <BooksTable books={manuscript.similarBooks}></BooksTable>
+      </Box>
     </Box>
   );
 };
+
+export async function getServerSideProps({ req, res, params }: any) {
+  // get manuscript id according to user active manuscript
+  const session = await getSession(req, res);
+  const email = session?.user?.email;
+
+  const userObj = await prisma.user.findFirst({
+    where: {
+      email,
+    },
+    include: {
+      manuscripts: {
+        where: {
+          active: true,
+        },
+        include: {
+          analysis: true,
+          similarBooks: {
+            include: {
+              analysis: true,
+            },
+          },
+        },
+      },
+    },
+  });
+
+  const manuscript = JSON.parse(JSON.stringify(userObj?.manuscripts[0]));
+
+  return {
+    props: { manuscript },
+  };
+}
 
 export default Research;
