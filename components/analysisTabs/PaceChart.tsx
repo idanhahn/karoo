@@ -56,7 +56,7 @@ const PaceChart = ({
       },
       {
         label: compareTo?.title,
-        data: compareTo?.plotStructure,
+        data: compareTo?.plot,
         borderColor: '#41B3A3',
         pointRadius: 0,
         borderWidth: 3,

@@ -35,6 +35,7 @@ import TabSideNavItem from '../../components/TabSideNavItem';
 import PlotStructure from '../../components/analysisTabs/PlotStructure';
 import Beats from '../../components/analysisTabs/Beats';
 import Pace from '../../components/analysisTabs/Pace';
+import ActionableMenuItem from '../../components/ActionableMenuItem';
 // import manuscriptContent3 from '../../assets/sample_manuscripts/manuscript3';
 // import manuscriptContent4 from '../../assets/sample_manuscripts/manuscript4';
 // import manuscriptContent5 from '../../assets/sample_manuscripts/manuscript5';
@@ -131,6 +132,42 @@ const marks = [
   },
 ];
 
+const actionables = {
+  plotStructureSuggestions: [
+    {
+      id: 0,
+      category: 'plotStructureSuggestion',
+      title: 'Formitable Conflict',
+      description:
+        'Most bestsellers throw a significant curve ball at their main protagonists in the last few chapters, usually around the 90% mark. Michael is having it too easy. Rechallenge him between chapters 22 to 25. Make it hurt.',
+    },
+    {
+      id: 1,
+      category: 'plotStructureSuggestion',
+      title: 'Strong Opening',
+      description:
+        "Most bestsellers present the reader with a memorable experience in the first few pages, between the 0% - 5% marks. We've detected a first conflict resolution event around the 11% mark. Significant conflict resolution events early in the book will create interest in your readers; consider upping the stakes earlier in the book.",
+    },
+  ],
+  characterSuggestions: [
+    {
+      id: 2,
+      category: 'charactersSuggestion',
+      title: 'Major Character Arc',
+      description: `Your main female protagonist, Rachel, has an arc gap between 45% - 70% marks, Your readers haven't heard from her for a long time. Did you plan this?`,
+    },
+  ],
+  emotionSuggestions: [
+    {
+      id: 3,
+      category: 'emotionsSuggestion',
+      title: 'Emotional Conflicts',
+      description:
+        'Most thrillers have an expected and changing distribution of fear, anger and courage. We noticed that as your plot developed through Chapters 12 to 18, Rachel exhibited noticeably higher levels of anger and very little fear. This may cause the reader to lose interest and stop empathizing with her. Think about changing the way she reacts to some of the challenges during this section of the book.',
+    },
+  ],
+};
+
 const Manuscript = ({
   manuscript,
   compareOptions,
@@ -146,6 +183,11 @@ const Manuscript = ({
   const [selectedIndex, setSelectedIndex] = useState(0);
 
   const open = Boolean(anchorEl);
+
+  const [anchorElActionables, setAnchorElActionables] =
+    useState<null | HTMLElement>(null);
+
+  const openActionables = Boolean(anchorElActionables);
 
   const handleClickCompare = (event: React.MouseEvent<HTMLElement>) => {
     setAnchorEl(event.currentTarget);
@@ -163,6 +205,14 @@ const Manuscript = ({
 
   const handleClearCompare = () => {
     setCompareOption(null);
+  };
+
+  const handleClickActionable = (event: React.MouseEvent<HTMLElement>) => {
+    setAnchorElActionables(event.currentTarget);
+  };
+
+  const handleCloseActionable = () => {
+    setAnchorElActionables(null);
   };
 
   const manuscriptRef = useRef<any>(null);
@@ -239,6 +289,17 @@ const Manuscript = ({
             </Button>
           )}
         </Box>
+        <Divider sx={{ mt: 0, mb: 1 }} orientation="vertical" flexItem />
+        <Box sx={{ ml: 2 }} className={styles.actionableSelect}>
+          <Button
+            variant="text"
+            size="large"
+            endIcon={<ArrowDropDownIcon />}
+            onClick={handleClickActionable}
+          >
+            4 Developmental Editing Recommendations
+          </Button>
+        </Box>
         <Box className={styles.right}></Box>
       </Box>
 
@@ -299,6 +360,7 @@ const Manuscript = ({
       </Box>
       <Box className={styles.suggestions}></Box>
 
+      {/* COMPARE MANU */}
       <Menu
         id="compare-menu"
         anchorEl={anchorEl}
@@ -364,6 +426,50 @@ const Manuscript = ({
           ))}
         </Box>
       </Menu>
+
+      {/* ACTIONABLES MANU */}
+      <Menu
+        id="actionables-menu"
+        anchorEl={anchorElActionables}
+        keepMounted
+        open={openActionables}
+        onClose={handleCloseActionable}
+      >
+        <Box sx={{ ml: 2, mr: 2, mb: 1 }} className={styles.actionablesMenu}>
+          <Box sx={{ ml: 2, mr: 2, mb: 1 }}>
+            <Typography sx={{ ml: 2 }} color="secondary">
+              Plot Structure Suggestions
+            </Typography>
+            {actionables.plotStructureSuggestions.map((actionable: any) => (
+              <ActionableMenuItem key={actionable.id} actionable={actionable} />
+            ))}
+          </Box>
+          <Divider />
+          <Box sx={{ ml: 2, mr: 2, mb: 1 }}>
+            <Typography sx={{ ml: 2 }} color="secondary">
+              Characters Suggestions
+            </Typography>
+            {actionables.characterSuggestions.map((actionable: any) => (
+              <>
+                {actionable.id === 1 ? <Divider /> : null}
+                <ActionableMenuItem
+                  key={actionable.id}
+                  actionable={actionable}
+                />
+              </>
+            ))}
+          </Box>
+          <Divider />
+          <Box sx={{ ml: 2, mr: 2, mb: 1 }}>
+            <Typography sx={{ ml: 2 }} color="secondary">
+              Emotion Structure Suggestions
+            </Typography>
+            {actionables.emotionSuggestions.map((actionable: any) => (
+              <ActionableMenuItem key={actionable.id} actionable={actionable} />
+            ))}
+          </Box>
+        </Box>
+      </Menu>
     </Box>
   );
 };
@@ -393,6 +499,7 @@ export async function getServerSideProps(params: any) {
       author: obj.author,
       plotStructure: obj.analysis?.plotStructure,
       beats: obj.analysis?.beats,
+      plot: null,
     };
   });
   const similarBooksList = JSON.parse(JSON.stringify(similarBooksOptions));

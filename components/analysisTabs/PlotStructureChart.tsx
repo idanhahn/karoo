@@ -113,7 +113,10 @@ const PlotStructureChart = ({
   };
 
   return (
-    <Box className={styles.container}>
+    <Box
+      // sx={{ width: { xs: '750px', xl: '1500px' } }}
+      className={styles.container}
+    >
       <Line data={data} options={options} />
     </Box>
   );
