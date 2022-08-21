@@ -22,6 +22,7 @@ const DialVsNarr = ({
 
   const handleBack = () => {
     if (activeTab > 0) {
+      console.log(narratives);
       setActiveTab(activeTab - 1);
     }
   };
