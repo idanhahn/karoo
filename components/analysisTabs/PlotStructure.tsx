@@ -1,5 +1,5 @@
-import { Box, Slider, Typography } from '@mui/material';
 import React from 'react';
+import { Box, Typography } from '@mui/material';
 import PlotStructureChart from './PlotStructureChart';
 
 import styles from './PlotStructure.module.css';

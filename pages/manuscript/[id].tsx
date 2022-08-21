@@ -36,6 +36,7 @@ import PlotStructure from '../../components/analysisTabs/PlotStructure';
 import Beats from '../../components/analysisTabs/Beats';
 import Pace from '../../components/analysisTabs/Pace';
 import ActionableMenuItem from '../../components/ActionableMenuItem';
+import DialVsNarr from '../../components/analysisTabs/DialVsNarr';
 // import manuscriptContent3 from '../../assets/sample_manuscripts/manuscript3';
 // import manuscriptContent4 from '../../assets/sample_manuscripts/manuscript4';
 // import manuscriptContent5 from '../../assets/sample_manuscripts/manuscript5';
@@ -81,7 +82,7 @@ const tabs = [
     id: 3,
     title: 'Narrative Vs Dialog',
     icon: <AlignVerticalBottomOutlinedIcon />,
-    disabled: true,
+    disabled: false,
   },
   {
     id: 4,
@@ -319,6 +320,13 @@ const Manuscript = ({
           <Pace data={manuscript.analysis.pace} compareTo={compareOption} />
         ) : null}
 
+        {activeTab === 3 ? (
+          <DialVsNarr
+            dialogues={manuscript.analysis.dialogues}
+            narratives={manuscript.analysis.narratives}
+          />
+        ) : null}
+
         <Box sx={{ ml: 4 }} width={700}>
           <Slider
             sx={{
@@ -450,13 +458,10 @@ const Manuscript = ({
               Characters Suggestions
             </Typography>
             {actionables.characterSuggestions.map((actionable: any) => (
-              <>
+              <Box key={actionable.id}>
                 {actionable.id === 1 ? <Divider /> : null}
-                <ActionableMenuItem
-                  key={actionable.id}
-                  actionable={actionable}
-                />
-              </>
+                <ActionableMenuItem actionable={actionable} />
+              </Box>
             ))}
           </Box>
           <Divider />

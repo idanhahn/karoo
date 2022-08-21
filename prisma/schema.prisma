@@ -38,6 +38,9 @@ model ManuscriptAnalysis {
   plotStructure Int[]
   beats         Int[]
   pace          Int[]
+  dialogues     Int[]
+  narratives    Int[]
+  dialogue_per  Int        @default(0)
   createdAt     DateTime   @default(now())
   updatedAt     DateTime   @default(now())
   manuscript    Manuscript @relation(fields: [manuscriptId], references: [id])
