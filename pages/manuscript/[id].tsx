@@ -324,6 +324,7 @@ const Manuscript = ({
           <DialVsNarr
             dialogues={manuscript.analysis.dialogues}
             narratives={manuscript.analysis.narratives}
+            dialogue_per={manuscript.analysis.dialogue_per}
           />
         ) : null}
 

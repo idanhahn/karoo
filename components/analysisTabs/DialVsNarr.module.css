@@ -4,6 +4,12 @@
   align-items: center;
 }
 
+.titleContainer {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
 .title {
   font-size: 28px;
   font-weight: semibold;
