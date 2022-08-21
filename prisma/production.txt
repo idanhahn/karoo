@@ -13,7 +13,7 @@ select 'drop table if exists "' || tablename || '" cascade;'
 
 Push DB (move .env to production db)
 ------------------------------------
-npx prisma db Push
+npx prisma db push
 
 *Load db from seed
 
