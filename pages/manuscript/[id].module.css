@@ -157,3 +157,19 @@
 
   width: 800px;
 }
+
+.slider {
+  width: 1150px;
+}
+
+@media screen and (max-width: 2500px) {
+  .slider {
+    width: 1150px;
+  }
+}
+
+@media screen and (max-width: 1920px) {
+  .slider {
+    width: 700px;
+  }
+}

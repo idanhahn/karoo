@@ -342,7 +342,7 @@ const Manuscript = ({
           />
         ) : null}
 
-        <Box sx={{ ml: 4 }} width={700}>
+        <Box sx={{ ml: 4 }} className={styles.slider}>
           <Slider
             sx={{
               color: '#41b3a3',
