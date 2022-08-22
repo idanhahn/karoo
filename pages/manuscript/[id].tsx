@@ -509,7 +509,7 @@ export async function getServerSideProps(params: any) {
       },
     },
   });
-  console.log(manuscriptObj);
+  // console.log(manuscriptObj);
 
   const manuscript = JSON.parse(JSON.stringify(manuscriptObj));
 
