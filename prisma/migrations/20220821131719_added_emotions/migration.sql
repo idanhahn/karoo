@@ -1,0 +1,8 @@
+-- AlterTable
+ALTER TABLE "ManuscriptAnalysis" ADD COLUMN     "anger" DOUBLE PRECISION[],
+ADD COLUMN     "emotions" DOUBLE PRECISION[],
+ADD COLUMN     "fear" DOUBLE PRECISION[],
+ADD COLUMN     "joy" DOUBLE PRECISION[],
+ADD COLUMN     "love" DOUBLE PRECISION[],
+ADD COLUMN     "sadness" DOUBLE PRECISION[],
+ADD COLUMN     "suprise" DOUBLE PRECISION[];

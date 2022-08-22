@@ -1,22 +1,27 @@
 import React from 'react';
 import { Box, IconButton, Typography } from '@mui/material';
-import DialVsNarrChart from './DialVsNarrChart';
 import ArrowBackIosIcon from '@mui/icons-material/ArrowBackIos';
 import ArrowForwardIosIcon from '@mui/icons-material/ArrowForwardIos';
-import styles from './DialVsNarr.module.css';
-import DialVsNarrPie from './DialVsNarrPie';
-import DialVsNarrVsPaceChart from './DialVsNarrVsPaceChart';
+import styles from './Emotions.module.css';
+import EmotionsChart from './EmotionsChart';
+import EmotionsPie from './EmotionsPie';
 
-const DialVsNarr = ({
-  dialogues,
-  narratives,
-  pace,
-  dialogue_per,
+const Emotions = ({
+  anger,
+  fear,
+  joy,
+  love,
+  sadness,
+  surprise,
+  emotions,
 }: {
-  dialogues: number[];
-  narratives: number[];
-  pace: number[];
-  dialogue_per: number;
+  anger: number[];
+  fear: number[];
+  joy: number[];
+  love: number[];
+  sadness: number[];
+  surprise: number[];
+  emotions: number[];
 }) => {
   const [activeTab, setActiveTab] = React.useState(0);
 
@@ -27,7 +32,7 @@ const DialVsNarr = ({
   };
 
   const handleForward = () => {
-    if (activeTab < 2) {
+    if (activeTab < 1) {
       setActiveTab(activeTab + 1);
     }
   };
@@ -39,9 +44,10 @@ const DialVsNarr = ({
           <ArrowBackIosIcon />
         </IconButton>
         <Typography className={styles.title}>
-          {activeTab === 2
-            ? 'Dialogue Vs Pace Analysis'
-            : 'Dialogue Vs Narrative Analysis'}
+          {/* {activeTab === 2
+            ? 'Emotions Analysis'
+            : 'Emotions Classification'} */}
+          Emotions Analysis
         </Typography>
         <IconButton onClick={handleForward} disabled={activeTab === 2}>
           <ArrowForwardIosIcon />
@@ -49,19 +55,20 @@ const DialVsNarr = ({
       </Box>
       <Box sx={{ mt: 2 }} className={styles.graph}>
         {activeTab === 0 ? (
-          <DialVsNarrChart dialogues={dialogues} narratives={narratives} />
-        ) : null}
-        {activeTab === 1 ? <DialVsNarrPie dialogue_per={dialogue_per} /> : null}
-        {activeTab === 2 ? (
-          <DialVsNarrVsPaceChart
-            dialogues={dialogues}
-            narratives={narratives}
-            pace={pace.map((p) => p * 2)}
+          <EmotionsChart
+            anger={anger}
+            fear={fear}
+            joy={joy}
+            love={love}
+            sadness={sadness}
+            surprise={surprise}
           />
         ) : null}
+        {activeTab === 1 ? <EmotionsPie emotions={emotions} /> : null}
+        {activeTab === 2 ? null : null}
       </Box>
     </Box>
   );
 };
 
-export default DialVsNarr;
+export default Emotions;

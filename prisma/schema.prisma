@@ -41,6 +41,13 @@ model ManuscriptAnalysis {
   dialogues     Int[]
   narratives    Int[]
   dialogue_per  Int        @default(0)
+  anger         Float[]
+  fear          Float[]
+  joy           Float[]
+  love          Float[]
+  sadness       Float[]
+  surprise      Float[] 
+  emotions      Float[]
   createdAt     DateTime   @default(now())
   updatedAt     DateTime   @default(now())
   manuscript    Manuscript @relation(fields: [manuscriptId], references: [id])

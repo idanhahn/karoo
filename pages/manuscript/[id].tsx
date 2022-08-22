@@ -37,6 +37,7 @@ import Beats from '../../components/analysisTabs/Beats';
 import Pace from '../../components/analysisTabs/Pace';
 import ActionableMenuItem from '../../components/ActionableMenuItem';
 import DialVsNarr from '../../components/analysisTabs/DialVsNarr';
+import Emotions from '../../components/analysisTabs/Emotions';
 // import manuscriptContent3 from '../../assets/sample_manuscripts/manuscript3';
 // import manuscriptContent4 from '../../assets/sample_manuscripts/manuscript4';
 // import manuscriptContent5 from '../../assets/sample_manuscripts/manuscript5';
@@ -88,7 +89,7 @@ const tabs = [
     id: 4,
     title: 'Emotion Classification',
     icon: <EmojiEmotionsOutlinedIcon />,
-    disabled: true,
+    disabled: false,
   },
   {
     id: 5,
@@ -329,6 +330,18 @@ const Manuscript = ({
           />
         ) : null}
 
+        {activeTab === 4 ? (
+          <Emotions
+            anger={manuscript.analysis.anger}
+            fear={manuscript.analysis.fear}
+            joy={manuscript.analysis.joy}
+            love={manuscript.analysis.love}
+            sadness={manuscript.analysis.sadness}
+            surprise={manuscript.analysis.surprise}
+            emotions={manuscript.analysis.emotions}
+          />
+        ) : null}
+
         <Box sx={{ ml: 4 }} width={700}>
           <Slider
             sx={{
@@ -496,7 +509,6 @@ export async function getServerSideProps(params: any) {
       },
     },
   });
-  console.log(manuscriptObj);
 
   const manuscript = JSON.parse(JSON.stringify(manuscriptObj));
 
